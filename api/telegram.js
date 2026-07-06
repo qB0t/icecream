@@ -63,7 +63,7 @@ export default async function handler(req, res) {
       }
       await send(chatId, orderId
         ? `🍦 Order ${orderId} received! Ivan will confirm your delivery time here soon.\n\nЗаказ ${orderId} получен! Иван скоро подтвердит здесь время доставки.`
-        : `🍦 Welcome to TICE! Order at puerhbar.com/icecream — confirmations arrive here.\n\nДобро пожаловать в TICE! Заказывайте на puerhbar.com/icecream — подтверждения приходят сюда.`);
+        : `🍦 Welcome to TICE! Order at icecream.cy — confirmations arrive here.\n\nДобро пожаловать в TICE! Заказывайте на icecream.cy — подтверждения приходят сюда.`);
       await send(admin, `🔔 ${uname} connected${orderId ? ` for order ${orderId}` : ""}.\nReply with: /reply ${chatId} <message>`);
     } else {
       await send(admin, `💬 ${uname} (${chatId}):\n${text}\n\nReply: /reply ${chatId} <message>`);
