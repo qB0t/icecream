@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Puerh Bar — Tea Menu</title>
+<meta name="description" content="Puerh Bar — a private tea collection, brewed gong fu style, for friends.">
+<style>
+  :root{
+    --cream:#FBF6EC; --ink:#2B2622; --accent:#7A3B1E;
+    --gold:#A9802B; --muted:#6E655B; --rule:#C9B79C;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--cream); color:var(--ink);
+    font-family:Georgia,'Times New Roman',serif;
+    line-height:1.5; -webkit-font-smoothing:antialiased;
+  }
+  .frame{max-width:760px; margin:0 auto; padding:24px 30px 60px;}
+
+  .langbar{display:flex; justify-content:flex-end; margin-bottom:6px;}
+  .toggle{display:inline-flex; border:1px solid var(--rule); border-radius:30px; overflow:hidden;}
+  .toggle button{
+    font-family:inherit; font-size:13px; letter-spacing:.5px; cursor:pointer;
+    border:0; background:transparent; color:var(--muted); padding:5px 14px;
+  }
+  .toggle button.active{background:var(--accent); color:var(--cream);}
+
+  header{text-align:center; margin-bottom:6px;}
+  h1{font-size:46px; letter-spacing:3px; color:var(--accent); margin:0 0 2px; font-weight:700;}
+  .tagline{font-style:italic; color:var(--muted); font-size:17px; margin:0;}
+  .toprule{border:0; border-top:2px solid var(--accent); margin:16px 0 26px;}
+
+  section{margin-bottom:30px;}
+  h2{color:var(--accent); font-size:20px; letter-spacing:1px; text-transform:uppercase; margin:0 0 4px; font-weight:700;}
+  .sectrule{border:0; border-top:1.4px solid var(--gold); margin:0 0 12px;}
+
+  .item{
+    display:grid; grid-template-columns:minmax(0,1fr) max-content max-content;
+    column-gap:14px; padding:7px 0; border-bottom:1px dotted #E2D6C0;
+  }
+  .item:last-child{border-bottom:0;}
+  .name{font-weight:700; font-size:17px; grid-column:1; align-self:start;}
+  .note{grid-column:1; font-style:italic; color:var(--muted); font-size:13.5px; margin-top:2px;}
+  .size{grid-column:2; grid-row:1; text-align:right; color:var(--gold); font-size:14px; white-space:nowrap; align-self:start;}
+  .year{grid-column:3; grid-row:1; text-align:right; color:var(--muted); font-size:14px; white-space:nowrap; align-self:start;}
+
+  footer{margin-top:34px; padding-top:14px; border-top:2px solid var(--accent); text-align:center;}
+  .footnote{font-style:italic; color:var(--muted); font-size:14px; margin:0 0 14px;}
+  .map{
+    display:inline-flex; align-items:center; gap:8px; text-decoration:none;
+    color:var(--cream); background:var(--accent); padding:10px 20px;
+    border-radius:30px; font-size:15px; letter-spacing:.3px; transition:background .15s ease;
+  }
+  .map:hover{background:#5e2d16;}
+  .map svg{width:17px; height:17px; fill:var(--cream);}
+
+  @media (max-width:560px){
+    .frame{padding:18px 18px 48px;}
+    h1{font-size:34px; letter-spacing:2px;}
+    .tagline{font-size:15px;}
+    .item{column-gap:10px;}
+    .name{font-size:15.5px;}
+    .note{font-size:12.5px;}
+    .size,.year{font-size:12.5px;}
+  }
+  @media print{
+    body{background:#fff;}
+    .langbar{display:none;}
+    .map{color:#000;background:none;border:1px solid var(--accent);}
+  }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="langbar">
+    <div class="toggle" id="toggle">
+      <button data-lang="en">EN</button>
+      <button data-lang="ru">RU</button>
+    </div>
+  </div>
+  <header>
+    <h1>PUERH BAR</h1>
+    <p class="tagline" id="tagline"></p>
+  </header>
+  <hr class="toprule">
+  <div id="menu"></div>
+
+  <footer>
+    <p class="footnote" id="footnote"></p>
+    <a class="map" id="maplink" href="https://maps.app.goo.gl/jh7R4gMJS3pRixov7" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+      <span id="maptext"></span>
+    </a>
+  </footer>
+</div>
+
+<script>
+const UI = {
+  en: {tag:"a private tea collection — brewed gong fu style, for friends",
+       foot:"Ask about today’s brews · most teas give many infusions · take your time",
+       map:"Find us on the map"},
+  ru: {tag:"частная чайная коллекция — завариваем гунфу-ча, для друзей",
+       foot:"Спросите о сегодняшних чаях · большинство держит много проливов · не спешите",
+       map:"Найти нас на карте"}
+};
+const SIZE_RU = {"loose":"рассыпной","357 g":"357 г","100 g":"100 г","50 g":"50 г","5 g":"5 г"};
+const META_RU = {"Cyprus":"Кипр","Brazil":"Бразилия","China":"Китай"};
+
+// [titleEN, titleRU, [ [nameEN,nameRU,size,year,noteEN,noteRU], ... ] ]
+const MENU = [
+ ["Ripe (Shu) Pu-erh","Шу пуэр",[
+  ["Lucky Rabbit","Счастливый Кролик","100 g","2023",
+   "Gongting-grade blend of several vintages from Yule Shan; spicy-woody with a black-tea-like brightness.",
+   "Купаж гунтин-сырья разных лет с Юлэ Шань; пряно-древесный, с яркостью, как у красного чая."],
+  ["Tiger Cub","Тигрёнок","100 g","2022",
+   "Yule Shan ripe with lots of buds; smooth woody-spicy — nuts, chocolate, berry sourness, coffee-bitter finish.",
+   "Шу с Юлэ Шань, много почек; мягкий древесно-пряный — орехи, шоколад, ягодная кислинка, кофейная горчинка."],
+  ["Mountain Peak","Горная Вершина","100 g","2022",
+   "Single high-mountain garden in Menghai (50–70-yr trees); confectionary-sweet with bitter chocolate.",
+   "Высокогорный одно-садовый шу из Мэнхая (деревья 50–70 лет); кондитерская сладость и горький шоколад."],
+  ["Bronze Tiger","Бронзовый Тигр","357 g","2022",
+   "Bulang (Yong Ming) ripe, wine-fruity; figs, raisins and goji with chocolate and spice.",
+   "Шу с Буланшаня (Юн Мин), винно-фруктовый; инжир, изюм и годжи с шоколадом и специями."],
+  ["Lincang","Линьцан","100 g","2021",
+   "Lincang ripe, 4 yrs aged in Guangzhou; lightly smoky-woody, balanced and sweet — chocolate, walnut, berries.",
+   "Шу из Линьцана, 4 года выдержки в Гуанчжоу; лёгкая дымность, баланс и сладость — шоколад, грецкий орех, ягоды."],
+  ["Black Cat","Чёрный Кот","100 g","2020",
+   "Ailao Mountain ripe; rich woody-chocolate and nut, powerful and velvety with pastry and spice.",
+   "Шу с гор Айлаошань; насыщенный древесно-шоколадный и ореховый, мощный и бархатистый, со сдобой и специями."],
+  ["Menghai Wei Shu Cha","Мэнхай Вэй","100 g","2019",
+   "Classic “pure Menghai taste” ripe; thick and enveloping, woody-nutty with roasted almond and a chocolatey bitterness.",
+   "Классический «чистый вкус Мэнхая»; плотный и обволакивающий, древесно-ореховый с жареным миндалём и шоколадной горчинкой."],
+  ["Lao Cha Tou — “Old Tea Heads”","Лао Ча Тоу («Старые чайные головы»)","loose","2018",
+   "Naturally clumped nuggets of Da Shu material; coffee-chocolate, smooth and sweet, excellent boiled.",
+   "Природные комочки из сырья Да Шу; кофе-шоколад, мягкий и сладкий, отлично варится."],
+  ["Yong Zhen Golden Dragon","Юн Чжэнь «Золотой Дракон»","357 g","2018",
+   "Semi-aged Yongde ripe (fermented 2018); ripe berries, fruity-woody with coffee-chocolate.",
+   "Полувыдержанный шу из Юндэ (ферментация 2018); спелые ягоды, фруктово-древесный с кофе-шоколадом."],
+  ["Zhang Xiang Gu Shu","Чжан Сян Гу Шу","357 g","2015",
+   "Old-tree ripe with camphor (Zhang Xiang); velvety, nutty-woody, sparkling sweet finish.",
+   "Шу со старых деревьев с камфорой (Чжан Сян); бархатистый, орехово-древесный, искристо-сладкое послевкусие."],
+  ["Lao Ban Zhang","Лао Бань Чжан","357 g","2014",
+   "Premium aged Bulang; creamy with dark chocolate and spicy wood, long sweet aftertaste.",
+   "Премиальный выдержанный Буланшань; сливочный, тёмный шоколад и пряное дерево, долгое сладкое послевкусие."],
+  ["Bulan Da Shu","Булан Да Шу","357 g","2013",
+   "Semi-aged gongting-grade Bulang; rich and thick, woody-chocolate.",
+   "Полувыдержанный гунтин с Буланшаня; насыщенный и плотный, древесно-шоколадный."],
+  ["Gu Shu Chen Yun","Гу Шу Чэнь Юнь","357 g","2009",
+   "Aged old-tree Bulang ripe; dark chocolate with cream, rich yet soft, long finish.",
+   "Выдержанный шу со старых деревьев Буланшаня; тёмный шоколад со сливками, насыщенный, но мягкий, долгое послевкусие."],
+  ["Bulanshan Gongting — Lao Shu","Буланшань Гунтин (Лао Шу)","357 g","2009",
+   "Premium aged Bulang gongting from select buds; thick spicy-nutty aroma, creamy nutty body with chocolate bitterness, spicy woody-bark finish.",
+   "Премиальный выдержанный гунтин с Буланшаня из отборных почек; густой пряно-ореховый аромат, плотный сливочно-ореховый вкус с шоколадной горчинкой, пряная древесная кора в послевкусии."],
+  ["Bulan Shan Qiao Mu","Булан Шань Цяо Му","357 g","2006",
+   "Semi-aged Bulang arbor-tree ripe; smooth, woody and mellow.",
+   "Полувыдержанный шу с деревьев Буланшаня; мягкий, древесный и зрелый."],
+  ["Chen Xian Gong Ting","Чэнь Сян Гун Тин","loose","2005",
+   "Aged Menghai palace-grade buds; sweet, woody-nutty with camphor depth.",
+   "Выдержанные почки дворцового сорта из Мэнхая; сладкий, древесно-ореховый, с камфорной глубиной."],
+  ["Zhang Xiang — “Red Seal”","Чжан Сян («Красная печать»)","357 g","2005",
+   "Aged Fuhai cake, benchmark camphor (Zhang Xiang); sweet-woody and nutty, meditative.",
+   "Выдержанный блин Фухай, эталонная камфора (Чжан Сян); сладко-древесный и ореховый, медитативный."],
+  ["Chen Xiang — “Yellow Seal”","Чэнь Сян («Жёлтая печать»)","357 g","2003",
+   "Aged CNNP Menghai, Guangzhou-stored; leather, old wood, chocolate and a mentholated finish.",
+   "Выдержанный CNNP Мэнхай, хранение в Гуанчжоу; кожа, старое дерево, шоколад и ментоловое послевкусие."],
+  ["Zhang Xiang Lao Cha","Чжан Сян Лао Ча","loose","1996",
+   "Very old, damp-stored ripe; deep, mellow aged wood and quiet sweetness.",
+   "Очень старый шу влажного хранения; глубокий, зрелое дерево и тихая сладость."],
+ ]],
+ ["Hei Cha (Dark Tea)","Хэй Ча (тёмный чай)",[
+  ["Liu Bao Hei Cha","Лю Бао Хэй Ча","loose","2010",
+   "Guangxi basket-aged dark tea; woody-nutty with chocolate and spice, smooth and balanced.",
+   "Тёмный чай из Гуанси, выдержка в корзинах; древесно-ореховый с шоколадом и специями, мягкий и сбалансированный."],
+  ["Liu Bao Hei Cha","Лю Бао Хэй Ча","loose","2006",
+   "Guangxi dark tea, classic old technology; woody-earthy, velvety, chestnut-ruby liquor.",
+   "Тёмный чай из Гуанси по старой технологии; древесно-землистый, бархатистый, каштаново-рубиновый настой."],
+ ]],
+ ["White Tea","Белый чай",[
+  ["Yue Guang Bai — “Moonlight White”","Юэ Гуан Бай («Лунный свет»)","loose","2025",
+   "Yunnan large-leaf white (Jinggu Da Bai); dense sweet-floral aroma, fruity body, gentle tartness.",
+   "Юньнаньский крупнолистовой белый (Цзингу Да Бай); плотный сладко-цветочный аромат, фруктовое тело, лёгкая терпкость."],
+  ["Yue Guang Bai — “Moonlight White” (Yong Shun)","Юэ Гуан Бай («Лунный свет»), Юн Шунь","357 g","2017",
+   "Aged Banzhang arbor moonlight white pressed as a cake; mellow, honeyed and soft.",
+   "Выдержанный лунный белый из баньчжанского сырья, спрессован в блин; зрелый, медовый и мягкий."],
+ ]],
+ ["Yellow Tea","Жёлтый чай",[
+  ["Huo Shan Huang Ya","Хо Шань Хуан Я","loose","2026",
+   "Anhui yellow tea, cloth-smothered; juicy, blackcurrant and floral with a long sweet finish.",
+   "Жёлтый чай из Аньхоя, томлёный в ткани; сочный, чёрная смородина и цветы, долгое сладкое послевкусие."],
+ ]],
+ ["Green Tea","Зелёный чай",[
+  ["Tai Ping Hou Kui — “Monkey King”","Тай Пин Хоу Куй («Король обезьян»)","loose","2026",
+   "Anhui green of long pressed leaves; honeyed orchid aroma, thick smooth broth, no astringency.",
+   "Зелёный из Аньхоя с длинными прессованными листьями; медово-орхидеевый аромат, плотный мягкий настой, без терпкости."],
+  ["Sencha “Sanchi Shikomi”","Сенча «Санти Сикоми»","loose","2024",
+   "Fresh steamed Japanese green from Shizuoka; grassy, umami-rich and sweet.",
+   "Свежая японская зелёная сенча из Сидзуоки; травянистая, с умами и сладостью."],
+  ["Cold-Brew Sencha (Mizudashi)","Сенча холодного заваривания (Мидзудаси)","5 g","2024",
+   "Cold-steeped Shizuoka green in sachets; delicate, sweet, low bitterness.",
+   "Сенча холодного заваривания из Сидзуоки в пакетиках; нежная, сладкая, почти без горечи."],
+ ]],
+ ["Oolong","Улун",[
+  ["GABA Ali Shan","ГАБА Али Шань","loose","2025",
+   "High-mountain Taiwanese GABA oolong, medium roast; bready dried-fruit notes, relaxing and meditative.",
+   "Высокогорный тайваньский ГАБА-улун средней обжарки; хлебно-сухофруктовые ноты, расслабляет и медитативен."],
+  ["Si Ji Chun — “Four Seasons Spring”","Сы Цзи Чунь («Весна четырёх сезонов»)","loose","2024",
+   "Taiwanese rolled oolong; sweet jasmine aroma, oily floral body, soft and calming.",
+   "Тайваньский скрученный улун; сладкий жасминовый аромат, маслянистое цветочное тело, мягкий и успокаивающий."],
+  ["Ya Shi Xiang — “Duck Shit” Dan Cong","Я Ши Сян («Утиный помёт»), Дань Цун","loose","2024",
+   "Phoenix Mountain oolong from old bushes; floral honey-fruit, creamy, long sweet finish.",
+   "Улун с гор Феникса со старых кустов; цветочно-медово-фруктовый, сливочный, долгое сладкое послевкусие."],
+  ["Milk Oolong — “Nai Xiang”","Молочный улун («Най Сян»)","loose","2022",
+   "Creamy milk oolong (Mao Xie / Tieguanyin base); sweet milk-caramel, floral and creamy, no bitterness.",
+   "Сливочный молочный улун (основа Мао Се / Тегуаньинь); сладкий молочно-карамельный, цветочный, без горечи."],
+  ["Ku Gua Tie Guan Yin — “Bitter Melon”","Ку Гуа Тегуаньинь («горькая дыня»)","50 g","2022",
+   "Anxi Tie Guan Yin roasted and aged inside a bitter-melon gourd; cocoa, nuts and cream, bitterness turning to sweetness.",
+   "Аньси Тегуаньинь, обжарка и выдержка в горькой дыне (кугуа); какао, орехи и сливки, горчинка переходит в сладость."],
+  ["GABA Wuliangshan","ГАБА Уляншань","100 g","2020",
+   "Yunnan GABA oolong from 70-yr trees at 2000 m; honey-sweet, juicy berries and resin, deeply relaxing.",
+   "Юньнаньский ГАБА-улун с деревьев 70 лет на высоте 2000 м; медово-сладкий, сочные ягоды и смолка, глубоко расслабляет."],
+ ]],
+ ["Black (Red) Tea","Красный чай",[
+  ["Da Jin Zhen Wang — “Golden Needles”","Да Цзинь Чжэнь Ван («Золотые иглы»)","loose","2025",
+   "Yunnan golden-bud black (Jinggu Da Bai); berry and strawberry, juicy, sweet and velvety.",
+   "Юньнаньский красный из золотых почек (Цзингу Да Бай); ягоды и клубника, сочный, сладкий и бархатистый."],
+  ["Xiao Zhong High Grade","Сяо Чжун высшего сорта","loose","2025",
+   "Wuyi Mountain black tea; caramel and baked fruit, sweet lingering finish.",
+   "Красный чай с гор Уишань; карамель и печёные фрукты, долгое сладкое послевкусие."],
+  ["Gu Shu Shai Hong","Гу Шу Шай Хун","100 g","2022",
+   "Old-tree sun-dried Yunnan red (Jinggu); honeyed, berry & dried-fruit, thick buckwheat-honey, juicy finish.",
+   "Красный из старых деревьев солнечной сушки (Цзингу); медовый, ягоды и сухофрукты, плотный гречишно-медовый, сочное послевкусие."],
+ ]],
+ ["Herbal & Other","Травяной и другое",[
+  ["Buckwheat — Soba Cha","Гречишный чай (Соба-ча)","loose","China",
+   "Toasted buckwheat; nutty, comforting and naturally caffeine-free.",
+   "Обжаренная гречиха; ореховый, уютный, без кофеина."],
+  ["Organic Cacao Tea","Органический какао-чай","loose","Cyprus",
+   "100% cacao husk; rich chocolate aroma, sugar-free and caffeine-free.",
+   "100% какао-шелуха; насыщенный шоколадный аромат, без сахара и кофеина."],
+  ["Yerba Mate — “Fresh Leafy 23”","Йерба мате («Fresh Leafy 23»)","loose","Brazil",
+   "Artisanal green mate (Meta Mate); grassy, vibrant and energizing.",
+   "Ремесленный зелёный мате (Meta Mate); травянистый, яркий и бодрящий."],
+  ["Yerba Mate — Canarias","Йерба мате Canarias","loose","Brazil",
+   "Traditional Uruguayan-style ground mate; bold, smooth and full-bodied.",
+   "Традиционный уругвайский молотый мате; насыщенный, мягкий и полнотелый."],
+ ]],
+];
+
+const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const menuEl = document.getElementById("menu");
+
+function render(lang){
+  const i = lang === "ru" ? 1 : 0;
+  document.documentElement.lang = lang;
+  document.getElementById("tagline").textContent = UI[lang].tag;
+  document.getElementById("footnote").textContent = UI[lang].foot;
+  document.getElementById("maptext").textContent = UI[lang].map;
+  menuEl.innerHTML = "";
+  for (const sec of MENU){
+    const title = sec[i], items = sec[2];
+    const el = document.createElement("section");
+    el.innerHTML = `<h2>${esc(title)}</h2><hr class="sectrule">`;
+    for (const it of items){
+      const name = it[i], size = it[2], year = it[3], note = it[4 + i];
+      const sizeTxt = lang === "ru" ? (SIZE_RU[size] || size) : size;
+      const yearTxt = lang === "ru" ? (META_RU[year] || year) : year;
+      const row = document.createElement("div");
+      row.className = "item";
+      row.innerHTML =
+        `<div class="name">${esc(name)}</div>`+
+        `<div class="size">${esc(sizeTxt)}</div>`+
+        `<div class="year">${year ? esc(yearTxt) : ""}</div>`+
+        `<div class="note">${esc(note)}</div>`;
+      el.appendChild(row);
+    }
+    menuEl.appendChild(el);
+  }
+  document.querySelectorAll("#toggle button").forEach(b =>
+    b.classList.toggle("active", b.dataset.lang === lang));
+  try { localStorage.setItem("puerhbar_lang", lang); } catch(e){}
+}
+
+document.getElementById("toggle").addEventListener("click", e => {
+  const b = e.target.closest("button");
+  if (b) render(b.dataset.lang);
+});
+
+let start = "en";
+try { const s = localStorage.getItem("puerhbar_lang"); if (s) start = s; } catch(e){}
+render(start);
+</script>
+</body>
+</html>
