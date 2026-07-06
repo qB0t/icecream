@@ -3,293 +3,1274 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Puerh Bar — Tea Menu</title>
-<meta name="description" content="Puerh Bar — a private tea collection, brewed gong fu style, for friends.">
+<title>TICE — Tea Ice Cream, Cyprus</title>
+<meta name="description" content="Small-batch natural tea ice cream in Cyprus. Rare puerh & oolong flavours, fully customisable. Made to order, delivered fresh.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --cream:#FBF6EC; --ink:#2B2622; --accent:#7A3B1E;
-    --gold:#A9802B; --muted:#6E655B; --rule:#C9B79C;
-  }
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
-  body{
-    background:var(--cream); color:var(--ink);
-    font-family:Georgia,'Times New Roman',serif;
-    line-height:1.5; -webkit-font-smoothing:antialiased;
-  }
-  .frame{max-width:760px; margin:0 auto; padding:24px 30px 60px;}
+:root{
+  --cream:#faf6ee; --cream2:#f2ead9; --ink:#2b2118; --ink2:#6b5a48;
+  --green:#35563b; --green2:#4a7354; --amber:#a2643a; --amber2:#c98d5f;
+  --card:#fffdf8; --line:#e5dac6; --danger:#a33b2e;
+  --shadow:0 10px 30px rgba(43,33,24,.08); --shadow2:0 4px 14px rgba(43,33,24,.10);
+  --r:18px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--ink);line-height:1.6;font-size:16px}
+h1,h2,h3,.serif{font-family:'Playfair Display',serif}
+img{max-width:100%}
+button{font-family:inherit;cursor:pointer}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+.muted{color:var(--ink2)}
+.small{font-size:.85rem}
 
-  .langbar{display:flex; justify-content:flex-end; margin-bottom:6px;}
-  .toggle{display:inline-flex; border:1px solid var(--rule); border-radius:30px; overflow:hidden;}
-  .toggle button{
-    font-family:inherit; font-size:13px; letter-spacing:.5px; cursor:pointer;
-    border:0; background:transparent; color:var(--muted); padding:5px 14px;
-  }
-  .toggle button.active{background:var(--accent); color:var(--cream);}
+/* header */
+header{position:sticky;top:0;z-index:50;background:rgba(250,246,238,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-family:'Playfair Display',serif;font-weight:700;font-size:1.55rem;letter-spacing:.12em;text-decoration:none;color:var(--ink)}
+.logo span{color:var(--green)}
+.logo em{display:block;font-family:'Inter',sans-serif;font-style:normal;font-size:.58rem;letter-spacing:.28em;color:var(--ink2);font-weight:500;margin-top:-4px}
+.nav-right{display:flex;align-items:center;gap:10px}
+.nav-links{display:flex;gap:22px;margin-right:12px}
+.nav-links a{text-decoration:none;color:var(--ink2);font-size:.92rem;font-weight:500}
+.nav-links a:hover{color:var(--green)}
+.lang-toggle{display:flex;border:1px solid var(--line);border-radius:99px;overflow:hidden;background:var(--card)}
+.lang-toggle button{border:0;background:transparent;padding:5px 12px;font-size:.8rem;font-weight:600;color:var(--ink2)}
+.lang-toggle button.on{background:var(--green);color:#fff}
+.cart-btn{position:relative;border:1px solid var(--line);background:var(--card);border-radius:99px;padding:7px 16px;font-weight:600;font-size:.9rem;color:var(--ink)}
+.cart-btn:hover{border-color:var(--green)}
+.cart-count{position:absolute;top:-7px;right:-7px;background:var(--amber);color:#fff;font-size:.7rem;font-weight:700;border-radius:99px;min-width:19px;height:19px;display:none;align-items:center;justify-content:center;padding:0 4px}
+.cart-count.show{display:flex}
+@media(max-width:760px){.nav-links{display:none}}
 
-  header{text-align:center; margin-bottom:6px;}
-  h1{font-size:46px; letter-spacing:3px; color:var(--accent); margin:0 0 2px; font-weight:700;}
-  .tagline{font-style:italic; color:var(--muted); font-size:17px; margin:0;}
-  .toprule{border:0; border-top:2px solid var(--accent); margin:16px 0 26px;}
+/* hero */
+.hero{padding:72px 0 56px;text-align:center;position:relative;overflow:hidden}
+.hero h1{font-size:clamp(2.1rem,5.4vw,3.6rem);line-height:1.14;font-weight:700;max-width:820px;margin:0 auto 18px}
+.hero h1 em{font-style:italic;color:var(--green)}
+.hero p.sub{max-width:600px;margin:0 auto 32px;color:var(--ink2);font-size:1.08rem}
+.hero-ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-block;border-radius:99px;padding:14px 30px;font-weight:600;font-size:1rem;text-decoration:none;border:1px solid transparent;transition:.18s}
+.btn-primary{background:var(--green);color:#fff}
+.btn-primary:hover{background:var(--green2)}
+.btn-ghost{border-color:var(--ink);color:var(--ink);background:transparent}
+.btn-ghost:hover{background:var(--ink);color:var(--cream)}
+.hero-badges{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:36px}
+.hero-badges span{border:1px solid var(--line);background:var(--card);border-radius:99px;padding:6px 16px;font-size:.83rem;color:var(--ink2);font-weight:500}
+.scoops{display:flex;justify-content:center;gap:-10px;margin-bottom:30px}
+.scoop{width:74px;height:74px;border-radius:50%;margin:0 -8px;border:3px solid var(--cream);box-shadow:var(--shadow2)}
 
-  section{margin-bottom:30px;}
-  h2{color:var(--accent); font-size:20px; letter-spacing:1px; text-transform:uppercase; margin:0 0 4px; font-weight:700;}
-  .sectrule{border:0; border-top:1.4px solid var(--gold); margin:0 0 12px;}
+/* values */
+.values{background:var(--green);color:#f2eee2;padding:56px 0}
+.values .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+.value h3{font-size:1.12rem;margin-bottom:6px;color:#fff}
+.value p{font-size:.9rem;color:#cfdccb}
+.value .ic{font-size:1.6rem;margin-bottom:10px;display:block}
+@media(max-width:860px){.values .wrap{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.values .wrap{grid-template-columns:1fr}}
 
-  .item{
-    display:grid; grid-template-columns:minmax(0,1fr) max-content max-content;
-    column-gap:14px; padding:7px 0; border-bottom:1px dotted #E2D6C0;
-  }
-  .item:last-child{border-bottom:0;}
-  .name{font-weight:700; font-size:17px; grid-column:1; align-self:start;}
-  .note{grid-column:1; font-style:italic; color:var(--muted); font-size:13.5px; margin-top:2px;}
-  .size{grid-column:2; grid-row:1; text-align:right; color:var(--gold); font-size:14px; white-space:nowrap; align-self:start;}
-  .year{grid-column:3; grid-row:1; text-align:right; color:var(--muted); font-size:14px; white-space:nowrap; align-self:start;}
+/* sections */
+section{padding:72px 0}
+.sec-head{text-align:center;max-width:640px;margin:0 auto 44px}
+.sec-head h2{font-size:clamp(1.7rem,3.6vw,2.5rem);margin-bottom:10px}
+.sec-head p{color:var(--ink2)}
+.eyebrow{display:inline-block;font-size:.75rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--amber);margin-bottom:12px}
 
-  footer{margin-top:34px; padding-top:14px; border-top:2px solid var(--accent); text-align:center;}
-  .footnote{font-style:italic; color:var(--muted); font-size:14px; margin:0 0 14px;}
-  .map{
-    display:inline-flex; align-items:center; gap:8px; text-decoration:none;
-    color:var(--cream); background:var(--accent); padding:10px 20px;
-    border-radius:30px; font-size:15px; letter-spacing:.3px; transition:background .15s ease;
-  }
-  .map:hover{background:#5e2d16;}
-  .map svg{width:17px; height:17px; fill:var(--cream);}
+/* flavour cards */
+.flav-tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:34px}
+.flav-tabs button{border:1px solid var(--line);background:var(--card);border-radius:99px;padding:8px 20px;font-weight:600;font-size:.9rem;color:var(--ink2)}
+.flav-tabs button.on{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:.18s}
+.card:hover{transform:translateY(-3px)}
+.card .swatch{width:64px;height:64px;border-radius:50%;margin-bottom:14px;box-shadow:inset -6px -8px 14px rgba(0,0,0,.18), inset 5px 6px 10px rgba(255,255,255,.35)}
+.card h3{font-size:1.2rem;margin-bottom:4px}
+.card .tag{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:8px}
+.card p.desc{font-size:.88rem;color:var(--ink2);flex:1;margin-bottom:12px}
+.card .meta{display:flex;gap:14px;font-size:.82rem;color:var(--ink2);margin-bottom:14px;flex-wrap:wrap}
+.card .meta b{color:var(--ink)}
+.card .foot{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.card .price{font-weight:700;font-size:1.12rem}
+.card .price small{font-weight:500;color:var(--ink2);font-size:.78rem}
+.add-btn{background:var(--green);color:#fff;border:0;border-radius:99px;padding:9px 18px;font-weight:600;font-size:.88rem}
+.add-btn:hover{background:var(--green2)}
+.badge18{display:inline-block;border:1.5px solid var(--danger);color:var(--danger);font-size:.68rem;font-weight:700;border-radius:6px;padding:1px 6px;vertical-align:middle;margin-left:6px}
+.badge-ltd{display:inline-block;background:var(--amber);color:#fff;font-size:.68rem;font-weight:700;border-radius:6px;padding:2px 7px;vertical-align:middle;margin-left:6px}
+.ing-line{font-size:.78rem;color:var(--ink2);border-top:1px dashed var(--line);padding-top:10px;margin-bottom:12px}
 
-  @media (max-width:560px){
-    .frame{padding:18px 18px 48px;}
-    h1{font-size:34px; letter-spacing:2px;}
-    .tagline{font-size:15px;}
-    .item{column-gap:10px;}
-    .name{font-size:15.5px;}
-    .note{font-size:12.5px;}
-    .size,.year{font-size:12.5px;}
-  }
-  @media print{
-    body{background:#fff;}
-    .langbar{display:none;}
-    .map{color:#000;background:none;border:1px solid var(--accent);}
-  }
+/* customizer */
+#custom{background:var(--cream2)}
+.builder{display:grid;grid-template-columns:1fr 340px;gap:28px;align-items:start}
+@media(max-width:900px){.builder{grid-template-columns:1fr}}
+.steps{display:flex;flex-direction:column;gap:18px}
+.step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:var(--shadow2)}
+.step-head{display:flex;align-items:baseline;gap:12px;margin-bottom:6px}
+.step-num{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--amber);min-width:28px}
+.step h3{font-size:1.14rem}
+.step .hint{font-size:.85rem;color:var(--ink2);margin-bottom:14px;margin-left:40px}
+.opts{display:flex;flex-wrap:wrap;gap:10px;margin-left:40px}
+@media(max-width:560px){.opts,.step .hint{margin-left:0}}
+.opt{border:1.5px solid var(--line);background:var(--cream);border-radius:14px;padding:10px 16px;font-size:.9rem;font-weight:500;color:var(--ink);transition:.15s;text-align:left}
+.opt:hover{border-color:var(--green2)}
+.opt.on{border-color:var(--green);background:#eaf0e6;font-weight:600}
+.opt .sur{display:block;font-size:.74rem;color:var(--amber);font-weight:600}
+.opt .sub{display:block;font-size:.74rem;color:var(--ink2);font-weight:400}
+.flav-groups{margin-left:40px}
+@media(max-width:560px){.flav-groups{margin-left:0}}
+.flav-group-title{font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink2);margin:16px 0 10px}
+.flav-opts{display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:10px}
+.fopt{display:flex;align-items:center;gap:10px;border:1.5px solid var(--line);background:var(--cream);border-radius:14px;padding:9px 12px;font-size:.86rem;font-weight:500;transition:.15s;text-align:left}
+.fopt:hover{border-color:var(--green2)}
+.fopt.on{border-color:var(--green);background:#eaf0e6;font-weight:600}
+.fopt .dot{width:26px;height:26px;border-radius:50%;flex:none;box-shadow:inset -3px -4px 6px rgba(0,0,0,.16)}
+.fopt .fp{display:block;font-size:.72rem;color:var(--amber);font-weight:600}
+.fopt .sub{display:block;font-size:.72rem;color:var(--ink2);font-weight:400}
+
+/* summary panel */
+.summary{position:sticky;top:84px;background:var(--ink);color:#f2eee2;border-radius:var(--r);padding:26px;box-shadow:var(--shadow)}
+.summary h3{color:#fff;font-size:1.3rem;margin-bottom:16px}
+.sum-rows{display:flex;flex-direction:column;gap:7px;font-size:.88rem;margin-bottom:18px}
+.sum-rows .row{display:flex;justify-content:space-between;gap:12px}
+.sum-rows .row span:first-child{color:#b9ac9a}
+.sum-live{display:flex;gap:12px;margin-bottom:18px}
+.live-box{flex:1;background:rgba(255,255,255,.07);border-radius:12px;padding:12px;text-align:center}
+.live-box .v{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:#fff;line-height:1.1}
+.live-box .l{font-size:.72rem;color:#b9ac9a;letter-spacing:.06em;text-transform:uppercase}
+.summary .add-btn{width:100%;padding:13px;font-size:1rem;background:var(--amber)}
+.summary .add-btn:hover{background:var(--amber2)}
+.sum-note{font-size:.75rem;color:#b9ac9a;margin-top:12px;text-align:center}
+
+/* how it works / info */
+.how .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+@media(max-width:860px){.how .grid4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.how .grid4{grid-template-columns:1fr}}
+.how-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px}
+.how-card .n{font-family:'Playfair Display',serif;font-size:2rem;color:var(--amber);font-weight:700}
+.how-card h3{font-size:1.05rem;margin:6px 0}
+.how-card p{font-size:.87rem;color:var(--ink2)}
+
+/* faq */
+.faq-list{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 20px}
+details summary{font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+details summary::after{content:"+";font-size:1.3rem;color:var(--amber);font-weight:400}
+details[open] summary::after{content:"–"}
+details p{margin-top:10px;font-size:.92rem;color:var(--ink2)}
+
+/* cart drawer */
+.drawer-bg{position:fixed;inset:0;background:rgba(43,33,24,.45);z-index:90;opacity:0;pointer-events:none;transition:.25s}
+.drawer-bg.open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(440px,100%);background:var(--cream);z-index:95;transform:translateX(100%);transition:.28s;display:flex;flex-direction:column;box-shadow:-8px 0 30px rgba(0,0,0,.15)}
+.drawer.open{transform:none}
+.drawer-head{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;border-bottom:1px solid var(--line)}
+.drawer-head h3{font-size:1.3rem}
+.drawer-close{border:0;background:none;font-size:1.5rem;color:var(--ink2)}
+.drawer-body{flex:1;overflow-y:auto;padding:20px 24px;display:flex;flex-direction:column;gap:14px}
+.cart-item{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.cart-item .ci-top{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.cart-item h4{font-size:1rem}
+.cart-item .ci-price{font-weight:700}
+.cart-item p{font-size:.8rem;color:var(--ink2);margin:4px 0 8px}
+.ci-actions{display:flex;justify-content:space-between;align-items:center}
+.qty{display:flex;align-items:center;gap:10px}
+.qty button{width:26px;height:26px;border-radius:8px;border:1px solid var(--line);background:var(--cream);font-weight:700}
+.ci-remove{border:0;background:none;color:var(--danger);font-size:.8rem;font-weight:600}
+.cart-empty{text-align:center;color:var(--ink2);padding:40px 0}
+.drawer-foot{border-top:1px solid var(--line);padding:18px 24px}
+.drawer-total{display:flex;justify-content:space-between;font-weight:700;font-size:1.15rem;margin-bottom:6px}
+.drawer-foot .pay-note{font-size:.78rem;color:var(--ink2);margin-bottom:12px}
+.drawer-foot .btn{width:100%;text-align:center;border:0}
+
+/* order form */
+.order-form{display:none;flex-direction:column;gap:12px}
+.order-form.show{display:flex}
+.order-form label{font-size:.8rem;font-weight:600;color:var(--ink2)}
+.order-form input,.order-form select,.order-form textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-family:inherit;font-size:.92rem;background:var(--card);color:var(--ink);margin-top:4px}
+.order-form textarea{resize:vertical;min-height:60px}
+.pay-opts{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.pay-opts .opt{padding:8px 14px;font-size:.84rem}
+.tg-hint{font-size:.8rem;color:var(--ink2);background:var(--cream2);border-radius:10px;padding:10px 12px;line-height:1.5}
+
+/* order status */
+.track{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-top:16px;text-align:left}
+.track .tr-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
+.track .tr-head b{font-size:.92rem}
+.tr-auto{font-size:.72rem;color:var(--ink2);font-weight:500}
+.tr-auto .pulse-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--green);margin-right:5px;animation:blink 2s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+.chip.cancel{display:inline-block;border:1.5px solid var(--danger);border-radius:99px;padding:4px 12px;font-size:.76rem;font-weight:600;color:var(--danger);background:var(--cream)}
+.progress{display:flex;margin-top:10px}
+.pstep{flex:1;text-align:center;position:relative;font-size:.66rem;color:var(--ink2);font-weight:600;padding-top:24px;line-height:1.25}
+.pstep::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:17px;height:17px;border-radius:50%;background:var(--cream);border:2px solid var(--line);z-index:1;box-sizing:border-box;font-size:10px;line-height:13px;color:#fff;text-align:center}
+.pstep::after{content:"";position:absolute;top:8px;right:50%;width:100%;height:2.5px;background:var(--line)}
+.pstep:first-child::after{display:none}
+.pstep.done{color:var(--green)}
+.pstep.done::before{content:"✓";background:var(--green);border-color:var(--green)}
+.pstep.done::after{background:var(--green)}
+.pstep.now{color:var(--green)}
+.pstep.now::before{background:#fff;border-color:var(--green);box-shadow:0 0 0 4px rgba(53,86,59,.15);animation:ping 2s ease-in-out infinite}
+.pstep.now::after{background:var(--green)}
+@keyframes ping{0%,100%{box-shadow:0 0 0 4px rgba(53,86,59,.15)}50%{box-shadow:0 0 0 7px rgba(53,86,59,.07)}}
+
+/* modal (account / map) */
+.modal-bg{position:fixed;inset:0;background:rgba(43,33,24,.5);z-index:100;display:none;align-items:center;justify-content:center;padding:16px}
+.modal-bg.open{display:flex}
+.modal{background:var(--cream);border-radius:var(--r);max-width:460px;width:100%;max-height:86vh;overflow-y:auto;padding:24px;box-shadow:var(--shadow);position:relative}
+.modal h3{font-size:1.3rem;margin-bottom:14px}
+.modal .m-close{position:absolute;top:14px;right:18px;border:0;background:none;font-size:1.4rem;color:var(--ink2);cursor:pointer}
+.auth-form{display:flex;flex-direction:column;gap:10px}
+.auth-form input{border:1px solid var(--line);border-radius:10px;padding:11px 12px;font-family:inherit;font-size:.94rem;background:var(--card);color:var(--ink)}
+.auth-btns{display:flex;gap:8px}
+.auth-btns .btn{flex:1;text-align:center;border:0;padding:11px}
+.auth-err{color:var(--danger);font-size:.82rem;min-height:1em}
+.auth-div{display:flex;align-items:center;gap:10px;color:var(--ink2);font-size:.8rem;margin:4px 0}
+.auth-div::before,.auth-div::after{content:"";flex:1;height:1px;background:var(--line)}
+.acc-order{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:10px}
+.acc-order .ao-top{display:flex;justify-content:space-between;gap:8px;align-items:baseline;flex-wrap:wrap}
+.acc-order .ao-top b{font-size:.92rem}
+.acc-order .ao-date{font-size:.76rem;color:var(--ink2)}
+.acc-order .ao-row{display:flex;justify-content:space-between;align-items:center;margin-top:8px;gap:8px}
+.st-label{display:inline-block;border-radius:99px;padding:2px 10px;font-size:.72rem;font-weight:700;background:#eaf0e6;color:var(--green)}
+.st-label.cancel{background:#fbe9e6;color:var(--danger)}
+.buy-again{background:var(--amber);color:#fff;border:0;border-radius:99px;padding:7px 14px;font-weight:600;font-size:.82rem}
+.buy-again:hover{background:var(--amber2)}
+.acc-signout{border:0;background:none;color:var(--ink2);font-size:.82rem;font-weight:600;cursor:pointer;text-decoration:underline}
+.acc-btn{border:1px solid var(--line);background:var(--card);border-radius:99px;padding:7px 14px;font-weight:600;font-size:.9rem;color:var(--ink);cursor:pointer}
+.acc-btn:hover{border-color:var(--green)}
+#map-el{height:340px;border-radius:12px;border:1px solid var(--line);margin:10px 0}
+.loc-row{display:flex;gap:8px;margin-top:6px}
+.loc-row input{flex:1}
+.loc-btn{border:1.5px solid var(--line);background:var(--cream);border-radius:10px;padding:0 14px;font-weight:600;font-size:.82rem;color:var(--ink);white-space:nowrap;cursor:pointer}
+.loc-btn.set{border-color:var(--green);color:var(--green);background:#eaf0e6}
+
+/* map link pill + help button */
+.map-link{display:inline-flex;align-items:center;gap:5px;border:1.5px solid var(--line);border-radius:99px;padding:3px 12px;text-decoration:none;color:var(--green);font-weight:600;font-size:.8rem;background:var(--card);transition:.15s}
+.map-link:hover{border-color:var(--green);background:#eaf0e6}
+.help-fab{position:fixed;bottom:20px;right:20px;z-index:80;background:var(--green);color:#fff;border:0;border-radius:99px;padding:12px 20px;font-weight:600;font-size:.9rem;box-shadow:var(--shadow);cursor:pointer;transition:.18s}
+.help-fab:hover{background:var(--green2);transform:translateY(-2px)}
+@media(max-width:560px){.help-fab{padding:12px 14px}}
+
+/* toast */
+.toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,80px);background:var(--ink);color:#fff;padding:13px 26px;border-radius:99px;font-size:.9rem;font-weight:500;z-index:120;transition:.3s;opacity:0;box-shadow:var(--shadow);max-width:90vw;text-align:center}
+.toast.show{transform:translate(-50%,0);opacity:1}
+
+footer{background:var(--ink);color:#b9ac9a;padding:44px 0;font-size:.88rem}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+footer a{color:#e8dfd0;text-decoration:none}
+footer .f-logo{font-family:'Playfair Display',serif;font-size:1.3rem;letter-spacing:.12em;color:#fff}
 </style>
 </head>
 <body>
-<div class="frame">
-  <div class="langbar">
-    <div class="toggle" id="toggle">
-      <button data-lang="en">EN</button>
-      <button data-lang="ru">RU</button>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#">TICE<em data-i18n="tagline">TEA ICE CREAM</em></a>
+    <nav class="nav-right">
+      <div class="nav-links">
+        <a href="#flavours" data-i18n="nav_flavours">Flavours</a>
+        <a href="#custom" data-i18n="nav_custom">Create your own</a>
+        <a href="#how" data-i18n="nav_how">How it works</a>
+        <a href="#faq" data-i18n="nav_faq">FAQ</a>
+      </div>
+      <div class="lang-toggle">
+        <button id="lang-en" onclick="setLang('en')">EN</button>
+        <button id="lang-ru" onclick="setLang('ru')">RU</button>
+      </div>
+      <button class="acc-btn" id="acc-btn" onclick="openAccount()" title="Account">👤</button>
+      <button class="cart-btn" onclick="openCart()"><span data-i18n="cart">Cart</span><span class="cart-count" id="cart-count">0</span></button>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="scoops" id="hero-scoops"></div>
+    <h1 data-i18n-html="hero_h1">Rare teas,<br>frozen into <em>ice cream</em></h1>
+    <p class="sub" data-i18n="hero_sub">Small-batch natural ice cream made to order in Cyprus. Aged puerh, milk oolong, GABA — flavours nobody else has. Or build your own, exactly the way you like it.</p>
+    <div class="hero-ctas">
+      <a href="#custom" class="btn btn-primary" data-i18n="cta_custom">Create your own</a>
+      <a href="#flavours" class="btn btn-ghost" data-i18n="cta_menu">See the flavours</a>
+    </div>
+    <div class="hero-badges">
+      <span data-i18n="b1">100% natural · no preservatives</span>
+      <span data-i18n="b2">Made fresh to order</span>
+      <span data-i18n="b3">From 1 kg · pay on delivery</span>
+      <span data-i18n="b4">Delivered personally</span>
     </div>
   </div>
-  <header>
-    <h1>PUERH BAR</h1>
-    <p class="tagline" id="tagline"></p>
-  </header>
-  <hr class="toprule">
-  <div id="menu"></div>
+</section>
 
-  <footer>
-    <p class="footnote" id="footnote"></p>
-    <a class="map" id="maplink" href="https://maps.app.goo.gl/jh7R4gMJS3pRixov7" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
-      <span id="maptext"></span>
-    </a>
-  </footer>
+<div class="values">
+  <div class="wrap">
+    <div class="value"><span class="ic">🌿</span><h3 data-i18n="v1_t">Only real ingredients</h3><p data-i18n="v1_p">Fresh milk and cream, cane sugar, real tea leaves. No preservatives, colourants or "flavour identical to natural" — which is why it keeps 1–2 weeks, like real food should.</p></div>
+    <div class="value"><span class="ic">🍃</span><h3 data-i18n="v2_t">Rare tea flavours</h3><p data-i18n="v2_p">Everyone has matcha. We freeze aged shu puerh, Duck Shit oolong and GABA from a private gong-fu collection — teas you simply can't taste anywhere else in Cyprus.</p></div>
+    <div class="value"><span class="ic">🥄</span><h3 data-i18n="v3_t">Small batches</h3><p data-i18n="v3_p">Every kilogram is churned in 1-litre batches and never stored for months. Your order is made this week, for you, not scooped from a warehouse.</p></div>
+    <div class="value"><span class="ic">🛵</span><h3 data-i18n="v4_t">Personal delivery</h3><p data-i18n="v4_p">The person who makes your ice cream is the person who brings it. Cash, card, Revolut or crypto — on delivery, when you're happy with the order.</p></div>
+  </div>
 </div>
 
+<!-- FLAVOURS -->
+<section id="flavours">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow" data-i18n="fl_eyebrow">Signature menu</span>
+      <h2 data-i18n="fl_h2">The flavours</h2>
+      <p data-i18n="fl_sub">Ready recipes we've perfected. Every card shows full contents, calories and price — nothing to hide.</p>
+    </div>
+    <div class="flav-tabs" id="flav-tabs"></div>
+    <div class="grid" id="flav-grid"></div>
+  </div>
+</section>
+
+<!-- CUSTOMIZER -->
+<section id="custom">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow" data-i18n="cu_eyebrow">Create your own</span>
+      <h2 data-i18n="cu_h2">Your ice cream, your rules</h2>
+      <p data-i18n="cu_sub">Five quick choices. Price and calories update live as you build.</p>
+    </div>
+    <div class="builder">
+      <div class="steps" id="steps"></div>
+      <aside class="summary" id="summary"></aside>
+    </div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section id="how" class="how">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow" data-i18n="how_eyebrow">How it works</span>
+      <h2 data-i18n="how_h2">From order to spoon</h2>
+    </div>
+    <div class="grid4">
+      <div class="how-card"><div class="n">1</div><h3 data-i18n="h1_t">You order</h3><p data-i18n="h1_p">Pick a signature flavour or build your own. The order goes straight to my Telegram — I confirm within a few hours.</p></div>
+      <div class="how-card"><div class="n">2</div><h3 data-i18n="h2_t">I churn it</h3><p data-i18n="h2_p">Made fresh in small batches, usually within 24–48 hours. Tea is brewed gong-fu strength, never from powders or syrups.</p></div>
+      <div class="how-card"><div class="n">3</div><h3 data-i18n="h3_t">I deliver</h3><p data-i18n="h3_p">Personally, frozen, in 1 / 2 / 5 kg packs. We agree a time slot that suits you.</p></div>
+      <div class="how-card"><div class="n">4</div><h3 data-i18n="h4_t">You pay</h3><p data-i18n="h4_p">On delivery: cash, card, Revolut or crypto. If something's wrong with the order — you don't pay.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">FAQ</span>
+      <h2 data-i18n="faq_h2">Good questions</h2>
+    </div>
+    <div class="faq-list" id="faq-list"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <div class="f-logo">TICE</div>
+      <div data-i18n="foot_line">Tea ice cream · made in Cyprus · small batch</div>
+    </div>
+    <div>
+      <div><a href="#" onclick="openHelp();return false" data-i18n="help_link">Questions? Write to me in Telegram</a></div>
+      <div><a id="foot-tg" href="#" target="_blank" rel="noopener">Telegram</a> · <a href="https://puerhbar.com" target="_blank" rel="noopener">Puerh Bar</a></div>
+      <div class="small" data-i18n="foot_18">Alcohol flavours: 18+ only</div>
+    </div>
+  </div>
+</footer>
+
+<!-- CART DRAWER -->
+<div class="drawer-bg" id="drawer-bg" onclick="closeCart()"></div>
+<aside class="drawer" id="drawer">
+  <div class="drawer-head">
+    <h3 data-i18n="cart_h">Your order</h3>
+    <button class="drawer-close" onclick="closeCart()">×</button>
+  </div>
+  <div class="drawer-body" id="cart-body"></div>
+  <div class="drawer-foot" id="drawer-foot"></div>
+</aside>
+
+<!-- ACCOUNT MODAL -->
+<div class="modal-bg" id="acc-modal" onclick="if(event.target===this)closeAccount()">
+  <div class="modal">
+    <button class="m-close" onclick="closeAccount()">×</button>
+    <div id="acc-body"></div>
+  </div>
+</div>
+
+<!-- MAP MODAL -->
+<div class="modal-bg" id="map-modal" onclick="if(event.target===this)closeMap()">
+  <div class="modal">
+    <button class="m-close" onclick="closeMap()">×</button>
+    <h3 id="map-title"></h3>
+    <p class="small muted" id="map-hint"></p>
+    <div id="map-el"></div>
+    <div class="auth-btns">
+      <button class="btn btn-primary" id="map-save" onclick="saveLocation()"></button>
+      <button class="btn btn-ghost" id="map-clear" onclick="clearLocation()"></button>
+    </div>
+  </div>
+</div>
+
+<button class="help-fab" onclick="openHelp()" data-i18n="help_fab">💬 Need help?</button>
+
+<div class="toast" id="toast"></div>
+
 <script>
-const UI = {
-  en: {tag:"a private tea collection — brewed gong fu style, for friends",
-       foot:"Ask about today’s brews · most teas give many infusions · take your time",
-       map:"Find us on the map"},
-  ru: {tag:"частная чайная коллекция — завариваем гунфу-ча, для друзей",
-       foot:"Спросите о сегодняшних чаях · большинство держит много проливов · не спешите",
-       map:"Найти нас на карте"}
+/* ================= CONFIG — edit these ================= */
+const CONFIG = {
+  tgHandle: "ivanagafonov",
+  currency: "€",
+  deliveryNote: "Limassol & around",// shown in FAQ
 };
-const SIZE_RU = {"loose":"рассыпной","357 g":"357 г","100 g":"100 г","50 g":"50 г","5 g":"5 г"};
-const META_RU = {"Cyprus":"Кипр","Brazil":"Бразилия","China":"Китай"};
-
-// [titleEN, titleRU, [ [nameEN,nameRU,size,year,noteEN,noteRU], ... ] ]
-const MENU = [
- ["Ripe (Shu) Pu-erh","Шу пуэр",[
-  ["Lucky Rabbit","Счастливый Кролик","100 g","2023",
-   "Gongting-grade blend of several vintages from Yule Shan; spicy-woody with a black-tea-like brightness.",
-   "Купаж гунтин-сырья разных лет с Юлэ Шань; пряно-древесный, с яркостью, как у красного чая."],
-  ["Tiger Cub","Тигрёнок","100 g","2022",
-   "Yule Shan ripe with lots of buds; smooth woody-spicy — nuts, chocolate, berry sourness, coffee-bitter finish.",
-   "Шу с Юлэ Шань, много почек; мягкий древесно-пряный — орехи, шоколад, ягодная кислинка, кофейная горчинка."],
-  ["Mountain Peak","Горная Вершина","100 g","2022",
-   "Single high-mountain garden in Menghai (50–70-yr trees); confectionary-sweet with bitter chocolate.",
-   "Высокогорный одно-садовый шу из Мэнхая (деревья 50–70 лет); кондитерская сладость и горький шоколад."],
-  ["Bronze Tiger","Бронзовый Тигр","357 g","2022",
-   "Bulang (Yong Ming) ripe, wine-fruity; figs, raisins and goji with chocolate and spice.",
-   "Шу с Буланшаня (Юн Мин), винно-фруктовый; инжир, изюм и годжи с шоколадом и специями."],
-  ["Lincang","Линьцан","100 g","2021",
-   "Lincang ripe, 4 yrs aged in Guangzhou; lightly smoky-woody, balanced and sweet — chocolate, walnut, berries.",
-   "Шу из Линьцана, 4 года выдержки в Гуанчжоу; лёгкая дымность, баланс и сладость — шоколад, грецкий орех, ягоды."],
-  ["Black Cat","Чёрный Кот","100 g","2020",
-   "Ailao Mountain ripe; rich woody-chocolate and nut, powerful and velvety with pastry and spice.",
-   "Шу с гор Айлаошань; насыщенный древесно-шоколадный и ореховый, мощный и бархатистый, со сдобой и специями."],
-  ["Menghai Wei Shu Cha","Мэнхай Вэй","100 g","2019",
-   "Classic “pure Menghai taste” ripe; thick and enveloping, woody-nutty with roasted almond and a chocolatey bitterness.",
-   "Классический «чистый вкус Мэнхая»; плотный и обволакивающий, древесно-ореховый с жареным миндалём и шоколадной горчинкой."],
-  ["Lao Cha Tou — “Old Tea Heads”","Лао Ча Тоу («Старые чайные головы»)","loose","2018",
-   "Naturally clumped nuggets of Da Shu material; coffee-chocolate, smooth and sweet, excellent boiled.",
-   "Природные комочки из сырья Да Шу; кофе-шоколад, мягкий и сладкий, отлично варится."],
-  ["Yong Zhen Golden Dragon","Юн Чжэнь «Золотой Дракон»","357 g","2018",
-   "Semi-aged Yongde ripe (fermented 2018); ripe berries, fruity-woody with coffee-chocolate.",
-   "Полувыдержанный шу из Юндэ (ферментация 2018); спелые ягоды, фруктово-древесный с кофе-шоколадом."],
-  ["Zhang Xiang Gu Shu","Чжан Сян Гу Шу","357 g","2015",
-   "Old-tree ripe with camphor (Zhang Xiang); velvety, nutty-woody, sparkling sweet finish.",
-   "Шу со старых деревьев с камфорой (Чжан Сян); бархатистый, орехово-древесный, искристо-сладкое послевкусие."],
-  ["Lao Ban Zhang","Лао Бань Чжан","357 g","2014",
-   "Premium aged Bulang; creamy with dark chocolate and spicy wood, long sweet aftertaste.",
-   "Премиальный выдержанный Буланшань; сливочный, тёмный шоколад и пряное дерево, долгое сладкое послевкусие."],
-  ["Bulan Da Shu","Булан Да Шу","357 g","2013",
-   "Semi-aged gongting-grade Bulang; rich and thick, woody-chocolate.",
-   "Полувыдержанный гунтин с Буланшаня; насыщенный и плотный, древесно-шоколадный."],
-  ["Gu Shu Chen Yun","Гу Шу Чэнь Юнь","357 g","2009",
-   "Aged old-tree Bulang ripe; dark chocolate with cream, rich yet soft, long finish.",
-   "Выдержанный шу со старых деревьев Буланшаня; тёмный шоколад со сливками, насыщенный, но мягкий, долгое послевкусие."],
-  ["Bulanshan Gongting — Lao Shu","Буланшань Гунтин (Лао Шу)","357 g","2009",
-   "Premium aged Bulang gongting from select buds; thick spicy-nutty aroma, creamy nutty body with chocolate bitterness, spicy woody-bark finish.",
-   "Премиальный выдержанный гунтин с Буланшаня из отборных почек; густой пряно-ореховый аромат, плотный сливочно-ореховый вкус с шоколадной горчинкой, пряная древесная кора в послевкусии."],
-  ["Bulan Shan Qiao Mu","Булан Шань Цяо Му","357 g","2006",
-   "Semi-aged Bulang arbor-tree ripe; smooth, woody and mellow.",
-   "Полувыдержанный шу с деревьев Буланшаня; мягкий, древесный и зрелый."],
-  ["Chen Xian Gong Ting","Чэнь Сян Гун Тин","loose","2005",
-   "Aged Menghai palace-grade buds; sweet, woody-nutty with camphor depth.",
-   "Выдержанные почки дворцового сорта из Мэнхая; сладкий, древесно-ореховый, с камфорной глубиной."],
-  ["Zhang Xiang — “Red Seal”","Чжан Сян («Красная печать»)","357 g","2005",
-   "Aged Fuhai cake, benchmark camphor (Zhang Xiang); sweet-woody and nutty, meditative.",
-   "Выдержанный блин Фухай, эталонная камфора (Чжан Сян); сладко-древесный и ореховый, медитативный."],
-  ["Chen Xiang — “Yellow Seal”","Чэнь Сян («Жёлтая печать»)","357 g","2003",
-   "Aged CNNP Menghai, Guangzhou-stored; leather, old wood, chocolate and a mentholated finish.",
-   "Выдержанный CNNP Мэнхай, хранение в Гуанчжоу; кожа, старое дерево, шоколад и ментоловое послевкусие."],
-  ["Zhang Xiang Lao Cha","Чжан Сян Лао Ча","loose","1996",
-   "Very old, damp-stored ripe; deep, mellow aged wood and quiet sweetness.",
-   "Очень старый шу влажного хранения; глубокий, зрелое дерево и тихая сладость."],
- ]],
- ["Hei Cha (Dark Tea)","Хэй Ча (тёмный чай)",[
-  ["Liu Bao Hei Cha","Лю Бао Хэй Ча","loose","2010",
-   "Guangxi basket-aged dark tea; woody-nutty with chocolate and spice, smooth and balanced.",
-   "Тёмный чай из Гуанси, выдержка в корзинах; древесно-ореховый с шоколадом и специями, мягкий и сбалансированный."],
-  ["Liu Bao Hei Cha","Лю Бао Хэй Ча","loose","2006",
-   "Guangxi dark tea, classic old technology; woody-earthy, velvety, chestnut-ruby liquor.",
-   "Тёмный чай из Гуанси по старой технологии; древесно-землистый, бархатистый, каштаново-рубиновый настой."],
- ]],
- ["White Tea","Белый чай",[
-  ["Yue Guang Bai — “Moonlight White”","Юэ Гуан Бай («Лунный свет»)","loose","2025",
-   "Yunnan large-leaf white (Jinggu Da Bai); dense sweet-floral aroma, fruity body, gentle tartness.",
-   "Юньнаньский крупнолистовой белый (Цзингу Да Бай); плотный сладко-цветочный аромат, фруктовое тело, лёгкая терпкость."],
-  ["Yue Guang Bai — “Moonlight White” (Yong Shun)","Юэ Гуан Бай («Лунный свет»), Юн Шунь","357 g","2017",
-   "Aged Banzhang arbor moonlight white pressed as a cake; mellow, honeyed and soft.",
-   "Выдержанный лунный белый из баньчжанского сырья, спрессован в блин; зрелый, медовый и мягкий."],
- ]],
- ["Yellow Tea","Жёлтый чай",[
-  ["Huo Shan Huang Ya","Хо Шань Хуан Я","loose","2026",
-   "Anhui yellow tea, cloth-smothered; juicy, blackcurrant and floral with a long sweet finish.",
-   "Жёлтый чай из Аньхоя, томлёный в ткани; сочный, чёрная смородина и цветы, долгое сладкое послевкусие."],
- ]],
- ["Green Tea","Зелёный чай",[
-  ["Tai Ping Hou Kui — “Monkey King”","Тай Пин Хоу Куй («Король обезьян»)","loose","2026",
-   "Anhui green of long pressed leaves; honeyed orchid aroma, thick smooth broth, no astringency.",
-   "Зелёный из Аньхоя с длинными прессованными листьями; медово-орхидеевый аромат, плотный мягкий настой, без терпкости."],
-  ["Sencha “Sanchi Shikomi”","Сенча «Санти Сикоми»","loose","2024",
-   "Fresh steamed Japanese green from Shizuoka; grassy, umami-rich and sweet.",
-   "Свежая японская зелёная сенча из Сидзуоки; травянистая, с умами и сладостью."],
-  ["Cold-Brew Sencha (Mizudashi)","Сенча холодного заваривания (Мидзудаси)","5 g","2024",
-   "Cold-steeped Shizuoka green in sachets; delicate, sweet, low bitterness.",
-   "Сенча холодного заваривания из Сидзуоки в пакетиках; нежная, сладкая, почти без горечи."],
- ]],
- ["Oolong","Улун",[
-  ["GABA Ali Shan","ГАБА Али Шань","loose","2025",
-   "High-mountain Taiwanese GABA oolong, medium roast; bready dried-fruit notes, relaxing and meditative.",
-   "Высокогорный тайваньский ГАБА-улун средней обжарки; хлебно-сухофруктовые ноты, расслабляет и медитативен."],
-  ["Si Ji Chun — “Four Seasons Spring”","Сы Цзи Чунь («Весна четырёх сезонов»)","loose","2024",
-   "Taiwanese rolled oolong; sweet jasmine aroma, oily floral body, soft and calming.",
-   "Тайваньский скрученный улун; сладкий жасминовый аромат, маслянистое цветочное тело, мягкий и успокаивающий."],
-  ["Ya Shi Xiang — “Duck Shit” Dan Cong","Я Ши Сян («Утиный помёт»), Дань Цун","loose","2024",
-   "Phoenix Mountain oolong from old bushes; floral honey-fruit, creamy, long sweet finish.",
-   "Улун с гор Феникса со старых кустов; цветочно-медово-фруктовый, сливочный, долгое сладкое послевкусие."],
-  ["Milk Oolong — “Nai Xiang”","Молочный улун («Най Сян»)","loose","2022",
-   "Creamy milk oolong (Mao Xie / Tieguanyin base); sweet milk-caramel, floral and creamy, no bitterness.",
-   "Сливочный молочный улун (основа Мао Се / Тегуаньинь); сладкий молочно-карамельный, цветочный, без горечи."],
-  ["Ku Gua Tie Guan Yin — “Bitter Melon”","Ку Гуа Тегуаньинь («горькая дыня»)","50 g","2022",
-   "Anxi Tie Guan Yin roasted and aged inside a bitter-melon gourd; cocoa, nuts and cream, bitterness turning to sweetness.",
-   "Аньси Тегуаньинь, обжарка и выдержка в горькой дыне (кугуа); какао, орехи и сливки, горчинка переходит в сладость."],
-  ["GABA Wuliangshan","ГАБА Уляншань","100 g","2020",
-   "Yunnan GABA oolong from 70-yr trees at 2000 m; honey-sweet, juicy berries and resin, deeply relaxing.",
-   "Юньнаньский ГАБА-улун с деревьев 70 лет на высоте 2000 м; медово-сладкий, сочные ягоды и смолка, глубоко расслабляет."],
- ]],
- ["Black (Red) Tea","Красный чай",[
-  ["Da Jin Zhen Wang — “Golden Needles”","Да Цзинь Чжэнь Ван («Золотые иглы»)","loose","2025",
-   "Yunnan golden-bud black (Jinggu Da Bai); berry and strawberry, juicy, sweet and velvety.",
-   "Юньнаньский красный из золотых почек (Цзингу Да Бай); ягоды и клубника, сочный, сладкий и бархатистый."],
-  ["Xiao Zhong High Grade","Сяо Чжун высшего сорта","loose","2025",
-   "Wuyi Mountain black tea; caramel and baked fruit, sweet lingering finish.",
-   "Красный чай с гор Уишань; карамель и печёные фрукты, долгое сладкое послевкусие."],
-  ["Gu Shu Shai Hong","Гу Шу Шай Хун","100 g","2022",
-   "Old-tree sun-dried Yunnan red (Jinggu); honeyed, berry & dried-fruit, thick buckwheat-honey, juicy finish.",
-   "Красный из старых деревьев солнечной сушки (Цзингу); медовый, ягоды и сухофрукты, плотный гречишно-медовый, сочное послевкусие."],
- ]],
- ["Herbal & Other","Травяной и другое",[
-  ["Buckwheat — Soba Cha","Гречишный чай (Соба-ча)","loose","China",
-   "Toasted buckwheat; nutty, comforting and naturally caffeine-free.",
-   "Обжаренная гречиха; ореховый, уютный, без кофеина."],
-  ["Organic Cacao Tea","Органический какао-чай","loose","Cyprus",
-   "100% cacao husk; rich chocolate aroma, sugar-free and caffeine-free.",
-   "100% какао-шелуха; насыщенный шоколадный аромат, без сахара и кофеина."],
-  ["Yerba Mate — “Fresh Leafy 23”","Йерба мате («Fresh Leafy 23»)","loose","Brazil",
-   "Artisanal green mate (Meta Mate); grassy, vibrant and energizing.",
-   "Ремесленный зелёный мате (Meta Mate); травянистый, яркий и бодрящий."],
-  ["Yerba Mate — Canarias","Йерба мате Canarias","loose","Brazil",
-   "Traditional Uruguayan-style ground mate; bold, smooth and full-bodied.",
-   "Традиционный уругвайский молотый мате; насыщенный, мягкий и полнотелый."],
- ]],
+/* ================= DATA ================= */
+// prices are € per kg; kcal per 100 g
+const SIZES = [
+  {kg:1, mult:1.00},
+  {kg:2, mult:0.95},   // 5% off per kg
+  {kg:5, mult:0.88},   // 12% off per kg
 ];
+const BASE = { pricePerKg: 35, kcal: 205 }; // cow milk, dairy cream, regular sugar, egg custard base
 
-const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
-const menuEl = document.getElementById("menu");
+const MILKS = [
+  {id:"cow",    price:0, kcal:0,   en:"Cow 3.5%",        ru:"Коровье 3.5%"},
+  {id:"goat",   price:4, kcal:5,   en:"Goat",            ru:"Козье"},
+  {id:"delact", price:2, kcal:0,   en:"Lactose-free",    ru:"Безлактозное"},
+  {id:"almond", price:2, kcal:-25, en:"Almond",          ru:"Миндальное"},
+  {id:"oat",    price:2, kcal:-15, en:"Oat",             ru:"Овсяное"},
+  {id:"coconut",price:2, kcal:-5,  en:"Coconut",         ru:"Кокосовое"},
+];
+const CREAMS = [
+  {id:"dairy",   price:0, kcal:0,   en:"Dairy cream 35%",     ru:"Сливки 35%"},
+  {id:"almondc", price:2, kcal:-20, en:"Almond cuisine",      ru:"Миндальные (растит.)"},
+  {id:"soyc",    price:2, kcal:-25, en:"Soy cuisine",         ru:"Соевые (растит.)"},
+  {id:"ricec",   price:2, kcal:-22, en:"Rice cuisine",        ru:"Рисовые (растит.)"},
+  {id:"oatc",    price:2, kcal:-20, en:"Oat cuisine",         ru:"Овсяные (растит.)"},
+  {id:"coconutc",price:2, kcal:-5,  en:"Coconut cuisine",     ru:"Кокосовые (растит.)"},
+  {id:"creamedco",price:3,kcal:15,  en:"Creamed coconut",     ru:"Кокосовая паста"},
+];
+const SUGARS = [
+  {id:"regular", price:0, kcal:0,   en:"Regular",            ru:"Обычный"},
+  {id:"low",     price:0, kcal:-35, en:"Low (−40%)",         ru:"Меньше (−40%)"},
+  {id:"none",    price:2, kcal:-60, en:"No added sugar",     ru:"Без сахара"},
+];
+const EGGS = [
+  {id:"yes", price:0, kcal:10,  en:"Yes — classic custard", ru:"Да — классический крем",
+   subEn:"richer, silkier", subRu:"плотнее и шелковистее"},
+  {id:"no",  price:0, kcal:-10, en:"No egg",                ru:"Без яйца",
+   subEn:"lighter, cleaner tea notes", subRu:"легче, чище чайные ноты"},
+];
+// Menu data is admin-editable: loaded from /api/catalog with catalog.json as fallback (see loadCatalog)
+let FLAVOURS = [];
+let SIGNATURE = [];
+/* ==== I18N + APP LOGIC appended below ==== */
+</script>
+<script id="app-logic">
+/* ================= I18N ================= */
+const I18N = {
+en:{
+  tagline:"TEA ICE CREAM", nav_flavours:"Flavours", nav_custom:"Create your own", nav_how:"How it works", nav_faq:"FAQ", cart:"Cart",
+  hero_h1:'Rare teas,<br>frozen into <em>ice cream</em>',
+  hero_sub:"Small-batch natural ice cream made to order in Cyprus. Aged puerh, milk oolong, GABA — flavours nobody else has. Or build your own, exactly the way you like it.",
+  cta_custom:"Create your own", cta_menu:"See the flavours",
+  b1:"100% natural · no preservatives", b2:"Made fresh to order", b3:"From 1 kg · pay on delivery", b4:"Delivered personally",
+  v1_t:"Only real ingredients", v1_p:"Fresh milk and cream, cane sugar, real tea leaves. No preservatives, colourants or “nature-identical flavourings” — which is why it keeps 1–2 weeks, like real food should.",
+  v2_t:"Rare tea flavours", v2_p:"Everyone has matcha. We freeze aged shu puerh, Duck Shit oolong and GABA from a private gong-fu collection — teas you can't taste anywhere else in Cyprus.",
+  v3_t:"Small batches", v3_p:"Every kilogram is churned in 1-litre batches and never stored for months. Your order is made this week, for you — not scooped from a warehouse.",
+  v4_t:"Personal delivery", v4_p:"The person who makes your ice cream is the person who brings it. Cash, card, Revolut or crypto — on delivery, when you're happy with the order.",
+  fl_eyebrow:"Signature menu", fl_h2:"The flavours", fl_sub:"Ready recipes we've perfected. Every card shows full contents, calories and price — nothing to hide.",
+  tab_all:"All", tab_classic:"Classics", tab_tea:"Tea collection", tab_spirit:"With spirits 18+",
+  kcal:"kcal / 100 g", perkg:"/ kg", add:"Add", preorder:"Pre-order",
+  cu_eyebrow:"Create your own", cu_h2:"Your ice cream, your rules", cu_sub:"Five quick choices. Price and calories update live as you build.",
+  st1:"Size", st1h:"Minimum order 1 kg. Bigger packs — better price per kg.",
+  st2:"Milk", st2h:"The body of your ice cream.",
+  st3:"Cream", st3h:"Dairy 35% for classic richness, or organic plant-based cuisines.",
+  st4:"Sugar", st4h:"Cane sugar by default. “No added sugar” is sweetened with dates & erythritol.",
+  st5:"Egg yolk", st5h:"Custard base or eggless — both work beautifully.",
+  st6:"Flavour", st6h:"The soul of it. Teas are brewed gong-fu strength into the base.",
+  grp_classic:"Classics", grp_tea:"Tea collection — from Puerh Bar", grp_spirit:"With spirits · 18+",
+  sum_h:"Your creation", sum_size:"Size", sum_milk:"Milk", sum_cream:"Cream", sum_sugar:"Sugar", sum_egg:"Egg", sum_flavour:"Flavour",
+  sum_price:"Total", sum_kcal:"kcal/100g", sum_add:"Add to cart", sum_note:"Pay on delivery — nothing charged now",
+  yes:"Yes", no:"No",
+  how_eyebrow:"How it works", how_h2:"From order to spoon",
+  h1_t:"You order", h1_p:"Pick a signature flavour or build your own. The order goes straight to my Telegram — I confirm within a few hours.",
+  h2_t:"I churn it", h2_p:"Made fresh in small batches, usually within 24–48 hours. Tea is brewed gong-fu strength — never powders or syrups.",
+  h3_t:"I deliver", h3_p:"Personally, frozen, in 1 / 2 / 5 kg packs. We agree a time slot that suits you.",
+  h4_t:"You pay", h4_p:"On delivery: cash, card, Revolut or crypto. If something's wrong with the order — you don't pay.",
+  faq_h2:"Good questions",
+  cart_h:"Your order", cart_empty:"Your cart is empty. Go build something delicious.",
+  custom_name:"Custom ice cream", total:"Total", checkout:"Checkout",
+  pay_note:"Payment on delivery — cash, card, Revolut or crypto.",
+  f_name:"Your name", f_phone:"Phone", f_area:"Delivery area", f_date:"Preferred delivery day", f_pay:"Payment on delivery", f_note:"Anything else? (allergies, timing, a note)",
+  f_tg:"Your Telegram (optional)",
+  f_area_ph:"e.g. Limassol, Germasogeia",
+  send_tg:"Send order",
+  sending:"Sending…",
+  sent:"Order sent! I'll confirm it in a few hours 🎉",
+  sent_h:"Order sent!",
+  sent_p:"I'll confirm it within a few hours. Want instant updates? Connect our Telegram bot — order confirmations and delivery updates will arrive there.",
+  btn_bot:"Get updates in Telegram",
+  track_h:"Order status", track_last:"Your last order", auto_upd:"live",
+  account:"Account", acc_h:"Your account", acc_signin_h:"Sign in or create an account",
+  acc_email:"Email", acc_pw:"Password (8+ characters)", acc_login:"Sign in", acc_register:"Create account",
+  acc_or:"or", acc_orders:"Your orders", acc_none:"No orders yet — your future ice cream history lives here.",
+  acc_signout:"Sign out", buy_again:"Buy again", acc_refilled:"Cart refilled from your order 🍦",
+  acc_back:"← All orders", acc_items:"Items", acc_delivery:"Delivery details", acc_total:"Total",
+  acc_cta:"Create an account to keep tracking this order",
+  err_bad_email:"That email doesn't look right", err_short_password:"Password needs 8+ characters",
+  err_exists:"Account already exists — try signing in", err_wrong_credentials:"Wrong email or password",
+  err_google_account:"This email uses Google sign-in", err_not_configured:"Accounts aren't enabled yet",
+  err_network:"Network error — try again",
+  loc_map:"Open map", help_fab:"💬 Need help?", help_link:"Questions? Write to me in Telegram",
+  pick_map:"📍 Map", loc_set:"✓ Location", map_h:"Where should I deliver?",
+  map_hint:"Tap the map to drop a pin on your exact door — street names repeat in Cyprus, the pin never lies.",
+  map_save:"Save location", map_clear:"Remove pin",
+  st_new:"Received", st_accepted:"Accepted", st_churning:"Churning", st_delivery:"On the way", st_done:"Delivered", st_cancelled:"Cancelled",
+  tg_hint:"The order goes straight to my Telegram. I'll reply to confirm the order and delivery time — leave your Telegram @username above if you prefer to chat there.",
+  copied:"Couldn't send automatically — order copied! Paste it into the Telegram chat 📋",
+  added:"Added to cart 🍦",
+  need_fields:"Please fill in your name and phone",
+  back_cart:"← Back to cart",
+  foot_line:"Tea ice cream · made in Cyprus · small batch", foot_18:"Alcohol flavours: 18+ only",
+  faqs:[
+    ["How long does it keep?","1–2 weeks at −18 °C. That's the honest shelf life of ice cream with zero preservatives. We recommend eating it within a week — not that anyone ever needed two."],
+    ["What's the minimum order?","1 kg — that's roughly 10–12 generous scoops. Packs come in 1, 2 and 5 kg."],
+    ["Where do you deliver?","Limassol and nearby. Other cities in Cyprus — write me in Telegram, we'll figure something out for larger orders."],
+    ["How is payment handled?","On delivery: cash, card, Revolut or crypto. You pay when the ice cream is in your hands."],
+    ["How fast will I get my order?","Everything is churned to order, usually 24–48 h. Rare-tea and limited flavours can take a couple of days more — I'll confirm the exact day in Telegram."],
+    ["Corporate events and parties?","Yes — 5 kg packs, tasting sets and custom tea flavours for offices and events. Write me directly and we'll design a menu."],
+    ["Where do the teas come from?","From my own gong-fu collection at Puerh Bar — aged shu puerhs, Taiwanese GABA, Phoenix Mountain dan congs. See the full tea menu at puerhbar.com."],
+    ["Is there a vegan option?","Yes — plant milks and creams in the customizer, plus the Dan Cong sorbet which contains no dairy or egg at all."]
+  ]
+},
+ru:{
+  tagline:"ЧАЙНОЕ МОРОЖЕНОЕ", nav_flavours:"Вкусы", nav_custom:"Собрать своё", nav_how:"Как это работает", nav_faq:"Вопросы", cart:"Корзина",
+  hero_h1:'Редкий чай,<br>замороженный в <em>мороженое</em>',
+  hero_sub:"Натуральное мороженое малыми партиями под заказ на Кипре. Выдержанный пуэр, молочный улун, габа — вкусы, которых нет ни у кого. Или соберите своё — ровно так, как любите.",
+  cta_custom:"Собрать своё", cta_menu:"Посмотреть вкусы",
+  b1:"100% натурально · без консервантов", b2:"Готовим под заказ", b3:"От 1 кг · оплата при получении", b4:"Доставляю лично",
+  v1_t:"Только настоящее", v1_p:"Свежее молоко и сливки, тростниковый сахар, настоящий чайный лист. Без консервантов, красителей и «ароматизаторов, идентичных натуральным» — поэтому хранится 1–2 недели, как и положено настоящей еде.",
+  v2_t:"Редкие чайные вкусы", v2_p:"Матча есть у всех. Мы замораживаем выдержанный шу пуэр, «Утиный помёт» и габу из частной гунфу-коллекции — этих вкусов больше нет нигде на Кипре.",
+  v3_t:"Малые партии", v3_p:"Каждый килограмм взбивается партиями по литру и не лежит месяцами на складе. Ваш заказ делается на этой неделе — для вас.",
+  v4_t:"Личная доставка", v4_p:"Кто делает ваше мороженое, тот его и привозит. Наличные, карта, Revolut или крипта — при получении, когда вы довольны заказом.",
+  fl_eyebrow:"Готовое меню", fl_h2:"Вкусы", fl_sub:"Отточенные рецепты. На каждой карточке — полный состав, калории и цена. Нам нечего прятать.",
+  tab_all:"Все", tab_classic:"Классика", tab_tea:"Чайная коллекция", tab_spirit:"С алкоголем 18+",
+  kcal:"ккал / 100 г", perkg:"/ кг", add:"В корзину", preorder:"Предзаказ",
+  cu_eyebrow:"Конструктор", cu_h2:"Ваше мороженое — ваши правила", cu_sub:"Пять быстрых шагов. Цена и калории пересчитываются на лету.",
+  st1:"Размер", st1h:"Минимальный заказ — 1 кг. Больше упаковка — выгоднее за кг.",
+  st2:"Молоко", st2h:"Тело вашего мороженого.",
+  st3:"Сливки", st3h:"Молочные 35% для классической плотности или органические растительные.",
+  st4:"Сахар", st4h:"По умолчанию тростниковый. «Без сахара» — на финиках и эритрите.",
+  st5:"Желток", st5h:"Заварная основа или без яйца — оба варианта прекрасны.",
+  st6:"Вкус", st6h:"Душа мороженого. Чай заваривается в основу по-гунфу.",
+  grp_classic:"Классика", grp_tea:"Чайная коллекция — из Puerh Bar", grp_spirit:"С алкоголем · 18+",
+  sum_h:"Ваше творение", sum_size:"Размер", sum_milk:"Молоко", sum_cream:"Сливки", sum_sugar:"Сахар", sum_egg:"Яйцо", sum_flavour:"Вкус",
+  sum_price:"Итого", sum_kcal:"ккал/100г", sum_add:"В корзину", sum_note:"Оплата при получении — сейчас платить не нужно",
+  yes:"Да", no:"Нет",
+  how_eyebrow:"Как это работает", how_h2:"От заказа до ложки",
+  h1_t:"Вы заказываете", h1_p:"Выбираете готовый вкус или собираете свой. Заказ приходит мне в Telegram — подтверждаю в течение пары часов.",
+  h2_t:"Я готовлю", h2_p:"Свежая партия под ваш заказ, обычно за 24–48 часов. Чай завариваю по-гунфу — никаких порошков и сиропов.",
+  h3_t:"Я привожу", h3_p:"Лично, в заморозке, упаковки 1 / 2 / 5 кг. Договоримся об удобном времени.",
+  h4_t:"Вы платите", h4_p:"При получении: наличные, карта, Revolut или крипта. Если с заказом что-то не так — вы не платите.",
+  faq_h2:"Хорошие вопросы",
+  cart_h:"Ваш заказ", cart_empty:"Корзина пуста. Идите соберите что-нибудь вкусное.",
+  custom_name:"Кастомное мороженое", total:"Итого", checkout:"Оформить",
+  pay_note:"Оплата при получении — наличные, карта, Revolut или крипта.",
+  f_name:"Ваше имя", f_phone:"Телефон", f_area:"Район доставки", f_date:"Желаемый день доставки", f_pay:"Оплата при получении", f_note:"Что-то ещё? (аллергии, время, пожелания)",
+  f_tg:"Ваш Telegram (необязательно)",
+  send_tg:"Отправить заказ",
+  sending:"Отправляю…",
+  sent:"Заказ отправлен! Подтвержу в течение пары часов 🎉",
+  sent_h:"Заказ отправлен!",
+  sent_p:"Подтвержу в течение пары часов. Хотите мгновенные обновления? Подключите нашего Telegram-бота — подтверждение и статус доставки придут туда.",
+  btn_bot:"Получать обновления в Telegram",
+  track_h:"Статус заказа", track_last:"Ваш последний заказ", auto_upd:"обновляется сам",
+  account:"Аккаунт", acc_h:"Ваш аккаунт", acc_signin_h:"Войдите или создайте аккаунт",
+  acc_email:"Email", acc_pw:"Пароль (8+ символов)", acc_login:"Войти", acc_register:"Создать аккаунт",
+  acc_or:"или", acc_orders:"Ваши заказы", acc_none:"Пока нет заказов — здесь будет ваша мороженая история.",
+  acc_signout:"Выйти", buy_again:"Повторить заказ", acc_refilled:"Корзина заполнена из заказа 🍦",
+  acc_back:"← Все заказы", acc_items:"Состав", acc_delivery:"Детали доставки", acc_total:"Итого",
+  acc_cta:"Создайте аккаунт, чтобы не потерять этот заказ",
+  err_bad_email:"Email выглядит странно", err_short_password:"Пароль — минимум 8 символов",
+  err_exists:"Аккаунт уже есть — попробуйте войти", err_wrong_credentials:"Неверный email или пароль",
+  err_google_account:"Этот email входит через Google", err_not_configured:"Аккаунты ещё не включены",
+  err_network:"Ошибка сети — попробуйте ещё раз",
+  loc_map:"Открыть карту", help_fab:"💬 Нужна помощь?", help_link:"Вопросы? Напишите мне в Telegram",
+  pick_map:"📍 Карта", loc_set:"✓ Локация", map_h:"Куда привезти?",
+  map_hint:"Ткните в карту, чтобы поставить точку на вашей двери — названия улиц на Кипре повторяются, точка не врёт.",
+  map_save:"Сохранить точку", map_clear:"Убрать точку",
+  st_new:"Получен", st_accepted:"Принят", st_churning:"Готовится", st_delivery:"В пути", st_done:"Доставлен", st_cancelled:"Отменён",
+  f_area_ph:"напр. Лимассол, Гермасойя",
+  tg_hint:"Заказ уходит прямо мне в Telegram. Я отвечу и подтвержу заказ и время доставки — оставьте свой @username выше, если удобнее общаться там.",
+  copied:"Не удалось отправить автоматически — заказ скопирован! Вставьте его в чат Telegram 📋",
+  added:"Добавлено в корзину 🍦",
+  need_fields:"Пожалуйста, укажите имя и телефон",
+  back_cart:"← Назад в корзину",
+  foot_line:"Чайное мороженое · сделано на Кипре · малые партии", foot_18:"Вкусы с алкоголем: только 18+",
+  faqs:[
+    ["Сколько оно хранится?","1–2 недели при −18 °C. Это честный срок для мороженого совсем без консервантов. Рекомендуем съесть за неделю — впрочем, дольше оно ещё ни у кого не жило."],
+    ["Какой минимальный заказ?","1 кг — это примерно 10–12 щедрых шариков. Упаковки: 1, 2 и 5 кг."],
+    ["Куда доставляете?","Лимассол и окрестности. Другие города Кипра — напишите в Telegram, для больших заказов что-нибудь придумаем."],
+    ["Как проходит оплата?","При получении: наличные, карта, Revolut или крипта. Платите, когда мороженое уже у вас в руках."],
+    ["Как быстро приедет заказ?","Всё взбивается под заказ, обычно 24–48 часов. Редкие чайные и лимитированные вкусы могут занять на пару дней больше — точный день подтвержу в Telegram."],
+    ["Корпоративы и праздники?","Да — упаковки по 5 кг, дегустационные сеты и кастомные чайные вкусы для офисов и событий. Напишите напрямую, соберём меню."],
+    ["Откуда чай?","Из моей гунфу-коллекции в Puerh Bar — выдержанные шу пуэры, тайваньская габа, даньцуны с гор Феникса. Полное чайное меню — на puerhbar.com."],
+    ["Есть веганский вариант?","Да — растительное молоко и сливки в конструкторе, плюс сорбет Дань Цун, в котором вообще нет молока и яйца."]
+  ]
+}
+};
+/* ================= STATE ================= */
+let lang = localStorage.getItem("tice_lang") || "en";
+let cart = JSON.parse(localStorage.getItem("tice_cart") || "[]");
+let flavTab = "all";
+let sel = { size:1, milk:"cow", cream:"dairy", sugar:"regular", egg:"yes", flavour:"puerh" };
+let checkoutMode = false;
 
-function render(lang){
-  const i = lang === "ru" ? 1 : 0;
-  document.documentElement.lang = lang;
-  document.getElementById("tagline").textContent = UI[lang].tag;
-  document.getElementById("footnote").textContent = UI[lang].foot;
-  document.getElementById("maptext").textContent = UI[lang].map;
-  menuEl.innerHTML = "";
-  for (const sec of MENU){
-    const title = sec[i], items = sec[2];
-    const el = document.createElement("section");
-    el.innerHTML = `<h2>${esc(title)}</h2><hr class="sectrule">`;
-    for (const it of items){
-      const name = it[i], size = it[2], year = it[3], note = it[4 + i];
-      const sizeTxt = lang === "ru" ? (SIZE_RU[size] || size) : size;
-      const yearTxt = lang === "ru" ? (META_RU[year] || year) : year;
-      const row = document.createElement("div");
-      row.className = "item";
-      row.innerHTML =
-        `<div class="name">${esc(name)}</div>`+
-        `<div class="size">${esc(sizeTxt)}</div>`+
-        `<div class="year">${year ? esc(yearTxt) : ""}</div>`+
-        `<div class="note">${esc(note)}</div>`;
-      el.appendChild(row);
-    }
-    menuEl.appendChild(el);
-  }
-  document.querySelectorAll("#toggle button").forEach(b =>
-    b.classList.toggle("active", b.dataset.lang === lang));
-  try { localStorage.setItem("puerhbar_lang", lang); } catch(e){}
+const t = k => (I18N[lang][k] ?? k);
+const L = o => o[lang] ?? o.en;
+const eur = n => CONFIG.currency + (Math.round(n*10)/10).toString().replace(/\.0$/,"");
+const find = (arr,id) => arr.find(x=>x.id===id);
+
+/* ================= CALC ================= */
+function customPerKg(){
+  return BASE.pricePerKg
+    + find(MILKS,sel.milk).price
+    + find(CREAMS,sel.cream).price
+    + find(SUGARS,sel.sugar).price
+    + find(EGGS,sel.egg).price
+    + find(FLAVOURS,sel.flavour).price;
+}
+function customPrice(){
+  const s = SIZES.find(x=>x.kg===sel.size);
+  return customPerKg() * s.kg * s.mult;
+}
+function customKcal(){
+  return Math.max(90, Math.round(BASE.kcal
+    + find(MILKS,sel.milk).kcal
+    + find(CREAMS,sel.cream).kcal
+    + find(SUGARS,sel.sugar).kcal
+    + find(EGGS,sel.egg).kcal
+    + find(FLAVOURS,sel.flavour).kcal));
+}
+function sigPrice(s, kg){
+  const z = SIZES.find(x=>x.kg===kg);
+  return s.pricePerKg * z.kg * z.mult;
 }
 
-document.getElementById("toggle").addEventListener("click", e => {
-  const b = e.target.closest("button");
-  if (b) render(b.dataset.lang);
-});
+/* ================= RENDER: static i18n ================= */
+function applyI18n(){
+  document.querySelectorAll("[data-i18n]").forEach(el=>el.textContent = t(el.dataset.i18n));
+  document.querySelectorAll("[data-i18n-html]").forEach(el=>el.innerHTML = t(el.dataset.i18nHtml));
+  document.getElementById("lang-en").classList.toggle("on", lang==="en");
+  document.getElementById("lang-ru").classList.toggle("on", lang==="ru");
+  document.documentElement.lang = lang;
+}
+function setLang(l){
+  lang = l; localStorage.setItem("tice_lang", l);
+  applyI18n(); renderTabs(); renderFlavours(); renderSteps(); renderSummary(); renderFaq(); renderCart();
+}
 
-let start = "en";
-try { const s = localStorage.getItem("puerhbar_lang"); if (s) start = s; } catch(e){}
-render(start);
+/* ================= RENDER: hero scoops ================= */
+function renderScoops(){
+  const el = document.getElementById("hero-scoops");
+  const colors = ["#6b4226","#7a9b4e","#e3cf9c","#4a2e1e","#d9a86c","#f0e2bc"];
+  el.innerHTML = colors.map(c=>`<div class="scoop" style="background:radial-gradient(circle at 32% 28%, ${c}, ${shade(c,-25)})"></div>`).join("");
+}
+function shade(hex,p){
+  const n=parseInt(hex.slice(1),16),a=x=>Math.min(255,Math.max(0,x+Math.round(2.55*p)));
+  return "#"+[(n>>16)&255,(n>>8)&255,n&255].map(a).map(x=>x.toString(16).padStart(2,"0")).join("");
+}
+
+/* ================= RENDER: signature flavours ================= */
+function renderTabs(){
+  const tabs=[["all","tab_all"],["classic","tab_classic"],["tea","tab_tea"],["spirit","tab_spirit"]];
+  document.getElementById("flav-tabs").innerHTML = tabs.map(([id,k])=>
+    `<button class="${flavTab===id?'on':''}" onclick="flavTab='${id}';renderTabs();renderFlavours()">${t(k)}</button>`).join("");
+}
+function renderFlavours(){
+  const list = SIGNATURE.filter(s=>flavTab==="all"||s.tab===flavTab);
+  document.getElementById("flav-grid").innerHTML = list.map(s=>{
+    const tabName = t("tab_"+s.tab).replace(" 18+","");
+    return `<div class="card">
+      <div class="swatch" style="background:radial-gradient(circle at 32% 28%, ${s.color}, ${shade(s.color,-22)})"></div>
+      <div class="tag">${tabName}</div>
+      <h3>${L({en:s.en,ru:s.ru})}${s.adult?'<span class="badge18">18+</span>':''}${s.ltd?'<span class="badge-ltd">LIMITED</span>':''}</h3>
+      <p class="desc">${L({en:s.dEn,ru:s.dRu})}</p>
+      <div class="ing-line">🌿 ${L({en:s.ingEn,ru:s.ingRu})}</div>
+      <div class="meta"><span>🔥 <b>${s.kcal}</b> ${t("kcal")}</span></div>
+      <div class="foot">
+        <div class="price">${eur(s.pricePerKg)}<small> ${t("perkg")}</small></div>
+        <div style="display:flex;gap:6px;align-items:center">
+          <select id="size-${s.id}" style="border:1px solid var(--line);border-radius:8px;padding:6px;background:var(--cream);font-family:inherit">
+            ${SIZES.map(z=>`<option value="${z.kg}">${z.kg} kg</option>`).join("")}
+          </select>
+          <button class="add-btn" onclick="addSignature('${s.id}')">${s.ltd?t("preorder"):t("add")}</button>
+        </div>
+      </div>
+    </div>`;
+  }).join("");
+}
+
+/* ================= RENDER: customizer ================= */
+function optBtn(group, o, extra=""){
+  const on = sel[group]===o.id;
+  const sur = o.price>0 ? `<span class="sur">+${eur(o.price)} ${t("perkg")}</span>` : "";
+  const sub = o.subEn ? `<span class="sub">${L({en:o.subEn,ru:o.subRu})}</span>` : "";
+  return `<button class="opt ${on?'on':''}" onclick="pick('${group}','${o.id}')">${L(o)}${sur}${sub}${extra}</button>`;
+}
+function renderSteps(){
+  const flavGroup = g => FLAVOURS.filter(f=>f.g===g).map(f=>{
+    const on = sel.flavour===f.id;
+    const desc = f.descEn?`<span class="sub">${L({en:f.descEn,ru:f.descRu})}</span>`:"";
+    const price = f.price>0?`<span class="fp">+${eur(f.price)} ${t("perkg")}</span>`:"";
+    return `<button class="fopt ${on?'on':''}" onclick="pick('flavour','${f.id}')">
+      <span class="dot" style="background:radial-gradient(circle at 32% 28%, ${f.color}, ${shade(f.color,-22)})"></span>
+      <span>${L(f)}${f.adult?' <span class="badge18">18+</span>':''}${f.ltd?' <span class="badge-ltd">LTD</span>':''}${desc}${price}</span>
+    </button>`;
+  }).join("");
+
+  document.getElementById("steps").innerHTML = `
+  <div class="step"><div class="step-head"><span class="step-num">1</span><h3>${t("st1")}</h3></div><p class="hint">${t("st1h")}</p>
+    <div class="opts">${SIZES.map(z=>{
+      const on = sel.size===z.kg;
+      const disc = z.mult<1?`<span class="sur">−${Math.round((1-z.mult)*100)}%</span>`:"";
+      return `<button class="opt ${on?'on':''}" onclick="pick('size',${z.kg})">${z.kg} kg${disc}</button>`;
+    }).join("")}</div></div>
+  <div class="step"><div class="step-head"><span class="step-num">2</span><h3>${t("st2")}</h3></div><p class="hint">${t("st2h")}</p>
+    <div class="opts">${MILKS.map(o=>optBtn("milk",o)).join("")}</div></div>
+  <div class="step"><div class="step-head"><span class="step-num">3</span><h3>${t("st3")}</h3></div><p class="hint">${t("st3h")}</p>
+    <div class="opts">${CREAMS.map(o=>optBtn("cream",o)).join("")}</div></div>
+  <div class="step"><div class="step-head"><span class="step-num">4</span><h3>${t("st4")}</h3></div><p class="hint">${t("st4h")}</p>
+    <div class="opts">${SUGARS.map(o=>optBtn("sugar",o)).join("")}</div></div>
+  <div class="step"><div class="step-head"><span class="step-num">5</span><h3>${t("st5")}</h3></div><p class="hint">${t("st5h")}</p>
+    <div class="opts">${EGGS.map(o=>optBtn("egg",o)).join("")}</div></div>
+  <div class="step"><div class="step-head"><span class="step-num">6</span><h3>${t("st6")}</h3></div><p class="hint">${t("st6h")}</p>
+    <div class="flav-groups">
+      <div class="flav-group-title">${t("grp_classic")}</div><div class="flav-opts">${flavGroup("classic")}</div>
+      <div class="flav-group-title">${t("grp_tea")}</div><div class="flav-opts">${flavGroup("tea")}</div>
+      <div class="flav-group-title">${t("grp_spirit")}</div><div class="flav-opts">${flavGroup("spirit")}</div>
+    </div></div>`;
+}
+function pick(group, id){
+  sel[group] = id;
+  renderSteps(); renderSummary();
+}
+function renderSummary(){
+  const f = find(FLAVOURS, sel.flavour);
+  if(!f){ document.getElementById("summary").innerHTML = ""; return; }
+  document.getElementById("summary").innerHTML = `
+    <h3>${t("sum_h")}</h3>
+    <div class="sum-rows">
+      <div class="row"><span>${t("sum_size")}</span><span>${sel.size} kg</span></div>
+      <div class="row"><span>${t("sum_milk")}</span><span>${L(find(MILKS,sel.milk))}</span></div>
+      <div class="row"><span>${t("sum_cream")}</span><span>${L(find(CREAMS,sel.cream))}</span></div>
+      <div class="row"><span>${t("sum_sugar")}</span><span>${L(find(SUGARS,sel.sugar))}</span></div>
+      <div class="row"><span>${t("sum_egg")}</span><span>${sel.egg==="yes"?t("yes"):t("no")}</span></div>
+      <div class="row"><span>${t("sum_flavour")}</span><span>${L(f)}</span></div>
+    </div>
+    <div class="sum-live">
+      <div class="live-box"><div class="v">${eur(customPrice())}</div><div class="l">${t("sum_price")}</div></div>
+      <div class="live-box"><div class="v">${customKcal()}</div><div class="l">${t("sum_kcal")}</div></div>
+    </div>
+    <button class="add-btn" onclick="addCustom()">${t("sum_add")}</button>
+    <div class="sum-note">${t("sum_note")}</div>`;
+}
+
+/* ================= CART ================= */
+function saveCart(){ localStorage.setItem("tice_cart", JSON.stringify(cart)); updateCount(); }
+function updateCount(){
+  const n = cart.reduce((a,i)=>a+i.qty,0);
+  const el = document.getElementById("cart-count");
+  el.textContent = n; el.classList.toggle("show", n>0);
+}
+function addSignature(id){
+  const s = find(SIGNATURE,id);
+  const kg = parseInt(document.getElementById("size-"+id).value);
+  cart.push({ type:"sig", id:s.id, kg, qty:1, price:sigPrice(s,kg),
+    name:{en:s.en,ru:s.ru}, detail:{en:`${kg} kg`, ru:`${kg} кг`}, kcal:s.kcal, ltd:!!s.ltd });
+  saveCart(); toast(t("added")); renderCart(); openCart();
+}
+function addCustom(){
+  const f=find(FLAVOURS,sel.flavour), m=find(MILKS,sel.milk), c=find(CREAMS,sel.cream), su=find(SUGARS,sel.sugar);
+  const dEn = `${sel.size} kg · ${m.en} milk · ${c.en} · sugar: ${su.en} · egg: ${sel.egg} · ${f.en}`;
+  const dRu = `${sel.size} кг · ${m.ru} · ${c.ru} · сахар: ${su.ru} · яйцо: ${sel.egg==="yes"?"да":"нет"} · ${f.ru}`;
+  cart.push({ type:"custom", kg:sel.size, qty:1, price:customPrice(),
+    name:{en:`Custom — ${f.en}`, ru:`Своё — ${f.ru}`}, detail:{en:dEn,ru:dRu}, kcal:customKcal(), ltd:!!f.ltd });
+  saveCart(); toast(t("added")); renderCart(); openCart();
+}
+function qty(i,d){
+  cart[i].qty += d;
+  if(cart[i].qty<1) cart.splice(i,1);
+  saveCart(); renderCart();
+}
+function removeItem(i){ cart.splice(i,1); saveCart(); renderCart(); }
+function cartTotal(){ return cart.reduce((a,i)=>a+i.price*i.qty,0); }
+
+function renderCart(){
+  const body = document.getElementById("cart-body");
+  const foot = document.getElementById("drawer-foot");
+  if(checkoutMode){ renderCheckout(); return; }
+  if(cart.length===0){
+    body.innerHTML = `<div class="cart-empty">🍦<br>${t("cart_empty")}</div>`;
+    foot.innerHTML = "";
+    return;
+  }
+  body.innerHTML = cart.map((it,i)=>`
+    <div class="cart-item">
+      <div class="ci-top"><h4>${L(it.name)}${it.ltd?' <span class="badge-ltd">LTD</span>':''}</h4><span class="ci-price">${eur(it.price*it.qty)}</span></div>
+      <p>${L(it.detail)} · ${it.kcal} ${t("kcal")}</p>
+      <div class="ci-actions">
+        <div class="qty"><button onclick="qty(${i},-1)">−</button><span>${it.qty}</span><button onclick="qty(${i},1)">+</button></div>
+        <button class="ci-remove" onclick="removeItem(${i})">✕</button>
+      </div>
+    </div>`).join("");
+  foot.innerHTML = `
+    <div class="drawer-total"><span>${t("total")}</span><span>${eur(cartTotal())}</span></div>
+    <div class="pay-note">${t("pay_note")}</div>
+    <button class="btn btn-primary" onclick="checkoutMode=true;renderCart()">${t("checkout")}</button>`;
+}
+
+/* ================= CHECKOUT ================= */
+function savedForm(){ try{ return JSON.parse(localStorage.getItem("tice_form")||"{}"); }catch(e){ return {}; } }
+function persistForm(){
+  const g = id => { const el=document.getElementById(id); return el?el.value.trim():""; };
+  const pay = document.querySelector("#pay-opts .opt.on")?.dataset.pay || "Cash";
+  localStorage.setItem("tice_form", JSON.stringify({
+    name:g("f-name"), phone:g("f-phone"), tg:g("f-tg"), area:g("f-area"), pay, loc:window._loc||null
+  }));
+}
+function renderCheckout(){
+  const body = document.getElementById("cart-body");
+  const foot = document.getElementById("drawer-foot");
+  const pays = ["Cash","Card","Revolut","Crypto"];
+  const paysRu = {"Cash":"Наличные","Card":"Карта","Revolut":"Revolut","Crypto":"Крипта"};
+  const sf = savedForm();
+  if(!window._loc && sf.loc) window._loc = sf.loc; // remember last delivery pin
+  const paySel = pays.includes(sf.pay) ? sf.pay : "Cash";
+  const esc = s => String(s||"").replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;");
+  body.innerHTML = `
+    <button class="ci-remove" style="text-align:left" onclick="checkoutMode=false;renderCart()">${t("back_cart")}</button>
+    <div class="order-form show">
+      <div><label>${t("f_name")} *</label><input id="f-name" value="${esc(sf.name)}"></div>
+      <div><label>${t("f_phone")} *</label><input id="f-phone" type="tel" placeholder="+357 ..." value="${esc(sf.phone)}"></div>
+      <div><label>${t("f_tg")}</label><input id="f-tg" placeholder="@username" value="${esc(sf.tg)}"></div>
+      <div><label>${t("f_area")}</label>
+        <div class="loc-row">
+          <input id="f-area" placeholder="${t('f_area_ph')}" value="${esc(sf.area)}">
+          <button type="button" class="loc-btn ${window._loc?'set':''}" id="loc-btn" onclick="openMap()">${window._loc?t("loc_set"):t("pick_map")}</button>
+        </div>
+      </div>
+      <div><label>${t("f_date")}</label><input id="f-date" type="date" min="${minDate()}" value="${minDate()}"></div>
+      <div><label>${t("f_pay")}</label>
+        <div class="pay-opts" id="pay-opts">${pays.map(p=>`<button class="opt ${p===paySel?'on':''}" data-pay="${p}" onclick="pickPay(this)">${lang==='ru'?paysRu[p]:p}</button>`).join("")}</div>
+      </div>
+      <div><label>${t("f_note")}</label><textarea id="f-note"></textarea></div>
+      <div class="tg-hint">💬 ${t("tg_hint")}</div>
+    </div>`;
+  ["f-name","f-phone","f-tg","f-area"].forEach(id=>document.getElementById(id).addEventListener("input", persistForm));
+  foot.innerHTML = `
+    <div class="drawer-total"><span>${t("total")}</span><span>${eur(cartTotal())}</span></div>
+    <div class="pay-note">${t("pay_note")}</div>
+    <button class="btn btn-primary" onclick="sendOrder()">${t("send_tg")} ✈️</button>`;
+}
+function pickPay(btn){
+  document.querySelectorAll("#pay-opts .opt").forEach(b=>b.classList.remove("on"));
+  btn.classList.add("on");
+  persistForm();
+}
+function minDate(){
+  const d = new Date(Date.now()+864e5); // tomorrow
+  return d.toISOString().slice(0,10);
+}
+function buildOrderText(){
+  const name = document.getElementById("f-name").value.trim();
+  const phone = document.getElementById("f-phone").value.trim();
+  const area = document.getElementById("f-area").value.trim();
+  const date = document.getElementById("f-date").value;
+  const pay = document.querySelector("#pay-opts .opt.on")?.dataset.pay || "Cash";
+  const note = document.getElementById("f-note").value.trim();
+  const orderId = "TICE-" + Date.now().toString(36).toUpperCase().slice(-5) + Math.floor(Math.random()*1296).toString(36).toUpperCase().padStart(2,"0");
+  let msg = `🍦 TICE ORDER #${orderId}\n`;
+  cart.forEach((it,i)=>{
+    msg += `\n${i+1}) ${it.name.en}${it.qty>1?` ×${it.qty}`:""}\n   ${it.detail.en}\n   ${eur(it.price*it.qty)}${it.ltd?" · PRE-ORDER":""}`;
+  });
+  const tg = document.getElementById("f-tg").value.trim();
+  msg += `\n\nTotal: ${eur(cartTotal())} (pay on delivery: ${pay})`;
+  msg += `\nName: ${name}\nPhone: ${phone}`;
+  if(tg) msg += `\nTelegram: ${tg}`;
+  if(area) msg += `\nArea: ${area}`;
+  if(window._loc) msg += `\nLocation: https://maps.google.com/?q=${window._loc.lat.toFixed(6)},${window._loc.lng.toFixed(6)}`;
+  if(date) msg += `\nPreferred day: ${date}`;
+  if(note) msg += `\nNote: ${note}`;
+  return {msg, name, phone, orderId};
+}
+function renderOrderSuccess(orderId, bot, tracking){
+  checkoutMode = false;
+  document.getElementById("cart-body").innerHTML = `
+    <div class="cart-empty" style="padding:30px 10px">
+      <div style="font-size:2rem">🎉</div>
+      <h4 style="font-size:1.2rem;margin:8px 0 2px">${t("sent_h")}</h4>
+      <div class="small" style="font-weight:600">#${orderId}</div>
+      <p style="font-size:.87rem;margin:12px 0 0;text-align:left">${t("sent_p")}</p>
+      ${tracking?trackBox(orderId,"new"):""}
+      ${bot?`<a class="btn btn-primary" style="margin-top:16px" target="_blank" rel="noopener" href="https://t.me/${bot}?start=${orderId}">${t("btn_bot")} ✈️</a>`:""}
+      ${!auth?`<div style="margin-top:12px"><button class="acc-btn" onclick="openAccount()">👤 ${t("acc_cta")}</button></div>`:""}
+    </div>`;
+  document.getElementById("drawer-foot").innerHTML = "";
+  if(tracking) startTracking(orderId);
+}
+/* ===== order status tracking ===== */
+const STATUS_FLOW = ["new","accepted","churning","delivery","done"];
+let trackTimer = null;
+function chipsHtml(status){
+  if(status==="cancelled") return `<div style="text-align:center;margin-top:8px"><span class="chip cancel">✖ ${t("st_cancelled")}</span></div>`;
+  const cur = STATUS_FLOW.indexOf(status);
+  const terminal = status==="done"; // journey complete: every step gets its checkmark
+  return `<div class="progress">${STATUS_FLOW.map((s,i)=>
+    `<div class="pstep ${i<cur||(terminal&&i===cur)?'done':''}${i===cur&&!terminal?' now':''}">${t("st_"+s)}</div>`).join("")}</div>`;
+}
+function trackBox(orderId, status){
+  return `<div class="track" id="track-box" data-order="${orderId}">
+    <div class="tr-head"><b>${t("track_h")}</b><span class="tr-auto"><span class="pulse-dot"></span>${t("auto_upd")}</span></div>
+    ${chipsHtml(status)}
+  </div>`;
+}
+async function fetchStatus(id){
+  try{
+    const r = await fetch("/api/status?id="+encodeURIComponent(id));
+    if(r.status===404 || r.status===400) return "gone";
+    if(!r.ok) return null;
+    const j = await r.json();
+    return j.ok ? j.status : null;
+  }catch(e){ return null; }
+}
+async function refreshStatus(){
+  const box = document.getElementById("track-box");
+  if(!box) return;
+  const s = await fetchStatus(box.dataset.order);
+  const cur = document.getElementById("track-box");
+  if(!cur) return;
+  if(s==="gone"){ // order unknown to the server — stop showing stale tracker
+    localStorage.removeItem("tice_last_order");
+    cur.remove(); clearInterval(trackTimer);
+  } else if(s){
+    cur.outerHTML = trackBox(box.dataset.order, s);
+  }
+}
+function startTracking(orderId){
+  localStorage.setItem("tice_last_order", orderId);
+  clearInterval(trackTimer);
+  trackTimer = setInterval(()=>{
+    if(!document.getElementById("track-box")){ clearInterval(trackTimer); return; }
+    refreshStatus();
+  }, 15000);
+  refreshStatus();
+}
+// instant refresh when the user returns to the tab
+document.addEventListener("visibilitychange", ()=>{
+  if(!document.hidden && document.getElementById("track-box")) refreshStatus();
+});
+async function sendOrder(){
+  const {msg, name, phone, orderId} = buildOrderText();
+  persistForm();
+  if(!name || !phone){ toast(t("need_fields")); return; }
+  const btn = document.querySelector("#drawer-foot .btn");
+  if(btn){ btn.disabled = true; btn.textContent = t("sending"); }
+  try{
+    const r = await fetch("/api/order", {
+      method:"POST", headers:{"Content-Type":"application/json", ...authHeaders()},
+      body: JSON.stringify({text: msg, orderId, items: cart, total: cartTotal(), location: window._loc||null})
+    });
+    const j = await r.json();
+    if(!j.ok) throw new Error("send failed");
+    rememberMyOrder(orderId);
+    cart = []; saveCart(); window._loc = null;
+    renderOrderSuccess(orderId, j.bot, !!j.tracking);
+  }catch(e){
+    // fallback: copy order & open Telegram chat manually
+    try{ await navigator.clipboard.writeText(msg); }
+    catch(_){
+      try{
+        const ta=document.createElement("textarea"); ta.value=msg; document.body.appendChild(ta);
+        ta.select(); document.execCommand("copy"); ta.remove();
+      }catch(__){}
+    }
+    toast(t("copied"));
+    setTimeout(()=>window.open(`https://t.me/${CONFIG.tgHandle}`,"_blank"), 600);
+    if(btn){ btn.disabled = false; btn.textContent = t("send_tg")+" ✈️"; }
+  }
+}
+
+/* ================= ACCOUNT ================= */
+let auth = JSON.parse(localStorage.getItem("tice_auth") || "null");
+function authHeaders(){ return auth ? {Authorization: "Bearer "+auth.token} : {}; }
+function updateAccBtn(){
+  const b = document.getElementById("acc-btn");
+  b.textContent = auth ? "👤 " + auth.email.split("@")[0] : "👤";
+  b.title = auth ? auth.email : t("account");
+}
+function rememberMyOrder(id){
+  const mine = JSON.parse(localStorage.getItem("tice_my_orders")||"[]");
+  if(!mine.includes(id)){ mine.push(id); localStorage.setItem("tice_my_orders", JSON.stringify(mine.slice(-20))); }
+}
+async function claimMyOrders(){
+  const mine = JSON.parse(localStorage.getItem("tice_my_orders")||"[]");
+  for(const id of mine){
+    try{ await fetch("/api/account",{method:"POST",headers:{"Content-Type":"application/json",...authHeaders()},body:JSON.stringify({claim:id})}); }catch(e){}
+  }
+}
+function openAccount(){ document.getElementById("acc-modal").classList.add("open"); renderAccount(); }
+function closeAccount(){ document.getElementById("acc-modal").classList.remove("open"); clearInterval(accTimer); }
+async function renderAccount(){
+  clearInterval(accTimer);
+  const el = document.getElementById("acc-body");
+  if(!auth){
+    el.innerHTML = `<h3>${t("acc_signin_h")}</h3>
+      <div class="auth-form">
+        <input id="a-email" type="email" placeholder="${t("acc_email")}" autocomplete="email">
+        <input id="a-pw" type="password" placeholder="${t("acc_pw")}" autocomplete="current-password">
+        <div class="auth-err" id="a-err"></div>
+        <div class="auth-btns">
+          <button class="btn btn-primary" onclick="doAuth('login')">${t("acc_login")}</button>
+          <button class="btn btn-ghost" onclick="doAuth('register')">${t("acc_register")}</button>
+        </div>
+        <div id="g-wrap" hidden><div class="auth-div">${t("acc_or")}</div><div id="g-btn" style="display:flex;justify-content:center"></div></div>
+      </div>`;
+    initGoogle();
+    return;
+  }
+  el.innerHTML = `<h3>${t("acc_orders")}</h3>
+    <div class="small muted" style="margin-bottom:12px">${auth.email} · <button class="acc-signout" onclick="signOut()">${t("acc_signout")}</button></div>
+    <div id="acc-orders" class="muted small">…</div>`;
+  let j;
+  try{
+    const r = await fetch("/api/account", {headers: authHeaders()});
+    if(r.status===401){ signOut(); return; }
+    j = await r.json();
+  }catch(e){ document.getElementById("acc-orders").textContent = t("err_network"); return; }
+  const box = document.getElementById("acc-orders");
+  if(!j.ok || !j.orders.length){ box.textContent = t("acc_none"); return; }
+  box.className = "";
+  window._accOrders = j.orders;
+  box.innerHTML = j.orders.map((o,i)=>`
+    <div class="acc-order" style="cursor:pointer" onclick="accDetail(${i})">
+      <div class="ao-top"><b>#${o.id}</b><span class="ao-date">${new Date(o.ts).toLocaleDateString()}</span></div>
+      <div class="ao-row">
+        <span><span class="st-label ${o.status==='cancelled'?'cancel':''}">${t("st_"+o.status)}</span>
+          ${o.total?`<b style="margin-left:8px">${eur(o.total)}</b>`:""}</span>
+        ${o.items?`<button class="buy-again" onclick="event.stopPropagation();buyAgain(${i})">${t("buy_again")}</button>`:""}
+      </div>
+    </div>`).join("");
+}
+function accDetail(i){
+  const o = window._accOrders && window._accOrders[i];
+  if(!o) return;
+  const items = (o.items||[]).map(it=>`
+    <div class="cart-item" style="margin-bottom:8px">
+      <div class="ci-top"><h4>${L(it.name)}${it.qty>1?` ×${it.qty}`:""}</h4><span class="ci-price">${eur(it.price*it.qty)}</span></div>
+      <p style="margin-bottom:0">${L(it.detail)}${it.kcal?` · ${it.kcal} ${t("kcal")}`:""}</p>
+    </div>`).join("");
+  // delivery meta from the order text (lines after the Total line)
+  const meta = (o.text||"").split("\n")
+    .filter(l=>/^(Name|Phone|Telegram|Area|Location|Preferred day|Note):/.test(l))
+    .map(l=>{
+      const [k,...rest] = l.split(": "); const v = rest.join(": ");
+      const val = k==="Location" ? `<a class="map-link" href="${v}" target="_blank" rel="noopener">📍 ${t("loc_map")}</a>` : v;
+      return `<div class="row" style="display:flex;justify-content:space-between;gap:12px;font-size:.84rem"><span class="muted">${k}</span><span style="text-align:right">${val}</span></div>`;
+    }).join("");
+  document.getElementById("acc-body").innerHTML = `
+    <button class="acc-signout" style="margin-bottom:10px" onclick="renderAccount()">${t("acc_back")}</button>
+    <h3 style="margin-bottom:2px">#${o.id}</h3>
+    <div class="small muted" style="margin-bottom:10px">${new Date(o.ts).toLocaleString()}</div>
+    <div class="track" style="margin:0 0 16px" id="acc-track" data-order="${o.id}">
+      <div class="tr-head"><b>${t("track_h")}</b><span class="tr-auto"><span class="pulse-dot"></span>${t("auto_upd")}</span></div>
+      <div id="acc-chips">${chipsHtml(o.status)}</div>
+    </div>
+    ${items?`<div class="flav-group-title">${t("acc_items")}</div>${items}`:""}
+    <div style="display:flex;justify-content:space-between;gap:12px;border-top:1px dashed var(--line);padding-top:10px;margin-top:10px">
+      <b>${t("acc_total")}</b><b>${o.total?eur(o.total):"—"}</b>
+    </div>
+    ${meta?`<div class="flav-group-title" style="margin-top:16px">${t("acc_delivery")}</div><div style="display:flex;flex-direction:column;gap:5px">${meta}</div>`:""}
+    ${o.items?`<button class="btn btn-primary" style="width:100%;border:0;margin-top:18px" onclick="buyAgain(${i})">${t("buy_again")} 🍦</button>`:""}`;
+  startAccTracking(i, o.id);
+}
+let accTimer = null;
+function startAccTracking(i, orderId){
+  clearInterval(accTimer);
+  const tick = async ()=>{
+    const box = document.getElementById("acc-track");
+    if(!box || box.dataset.order!==orderId){ clearInterval(accTimer); return; }
+    const s = await fetchStatus(orderId);
+    const chips = document.getElementById("acc-chips");
+    if(s && s!=="gone" && chips){
+      if(window._accOrders && window._accOrders[i]) window._accOrders[i].status = s;
+      chips.innerHTML = chipsHtml(s);
+    }
+  };
+  accTimer = setInterval(tick, 15000);
+  tick();
+}
+async function doAuth(mode, googleCred){
+  const err = document.getElementById("a-err");
+  const body = googleCred ? {mode:"google", credential:googleCred}
+    : {mode, email:document.getElementById("a-email").value, password:document.getElementById("a-pw").value};
+  let r,j;
+  try{
+    r = await fetch("/api/auth",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});
+    j = await r.json();
+  }catch(e){ if(err) err.textContent = t("err_network"); return; }
+  if(!j.ok){ if(err) err.textContent = t("err_"+j.error) !== "err_"+j.error ? t("err_"+j.error) : (j.error||"error"); return; }
+  auth = {token:j.token, email:j.email};
+  localStorage.setItem("tice_auth", JSON.stringify(auth));
+  updateAccBtn();
+  await claimMyOrders();
+  renderAccount();
+}
+function signOut(){
+  auth = null; localStorage.removeItem("tice_auth");
+  updateAccBtn(); renderAccount();
+}
+function buyAgain(i){
+  const o = window._accOrders && window._accOrders[i];
+  if(!o || !o.items) return;
+  cart = JSON.parse(JSON.stringify(o.items));
+  saveCart(); closeAccount(); toast(t("acc_refilled")); openCart();
+}
+/* Google sign-in (activates when GOOGLE_CLIENT_ID env var is set) */
+let _gClientId = null, _gLoaded = false;
+async function initGoogle(){
+  try{
+    if(_gClientId===null){
+      const r = await fetch("/api/auth"); const j = await r.json();
+      _gClientId = j.google || false;
+    }
+    if(!_gClientId || !document.getElementById("g-wrap")) return;
+    document.getElementById("g-wrap").hidden = false;
+    if(!_gLoaded){
+      await new Promise((ok,no)=>{
+        const s = document.createElement("script");
+        s.src = "https://accounts.google.com/gsi/client"; s.onload = ok; s.onerror = no;
+        document.head.appendChild(s);
+      });
+      _gLoaded = true;
+    }
+    google.accounts.id.initialize({client_id:_gClientId, callback:(resp)=>doAuth(null, resp.credential)});
+    google.accounts.id.renderButton(document.getElementById("g-btn"), {theme:"outline", size:"large", shape:"pill"});
+  }catch(e){ /* google optional */ }
+}
+
+/* ================= MAP PICKER (OSM/Leaflet; saved pin becomes a Google Maps link) ================= */
+let _map = null, _marker = null, _leafletLoaded = false;
+async function loadLeaflet(){
+  if(_leafletLoaded) return;
+  await new Promise((ok,no)=>{
+    const c = document.createElement("link");
+    c.rel = "stylesheet"; c.href = "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css";
+    document.head.appendChild(c);
+    const s = document.createElement("script");
+    s.src = "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js";
+    s.onload = ok; s.onerror = no;
+    document.head.appendChild(s);
+  });
+  _leafletLoaded = true;
+}
+async function openMap(){
+  document.getElementById("map-title").textContent = t("map_h");
+  document.getElementById("map-hint").textContent = t("map_hint");
+  document.getElementById("map-save").textContent = t("map_save");
+  document.getElementById("map-clear").textContent = t("map_clear");
+  document.getElementById("map-modal").classList.add("open");
+  try{ await loadLeaflet(); }catch(e){ toast(t("err_network")); closeMap(); return; }
+  setTimeout(()=>{
+    const LF = window.L; // Leaflet global ("L" is shadowed by our i18n helper)
+    if(!_map){
+      _map = LF.map("map-el").setView(window._loc?[window._loc.lat,window._loc.lng]:[34.707,33.022], window._loc?16:12); // Limassol
+      LF.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:"© OpenStreetMap"}).addTo(_map);
+      _map.on("click", (e)=>placeMarker(e.latlng));
+      if(navigator.geolocation && !window._loc){
+        navigator.geolocation.getCurrentPosition(p=>{
+          _map.setView([p.coords.latitude,p.coords.longitude],16);
+        },()=>{},{timeout:4000});
+      }
+    }else{
+      _map.invalidateSize();
+      if(window._loc) _map.setView([window._loc.lat,window._loc.lng],16);
+    }
+    if(window._loc) placeMarker({lat:window._loc.lat,lng:window._loc.lng});
+  }, 60);
+}
+function placeMarker(ll){
+  window._pendingLoc = {lat:ll.lat, lng:ll.lng};
+  if(_marker) _marker.setLatLng(ll);
+  else _marker = window.L.marker(ll).addTo(_map);
+}
+function saveLocation(){
+  if(window._pendingLoc) window._loc = window._pendingLoc;
+  syncLocBtn(); closeMap();
+  if(document.getElementById("f-name")) persistForm();
+}
+function clearLocation(){
+  window._loc = null; window._pendingLoc = null;
+  if(_marker){ _marker.remove(); _marker = null; }
+  syncLocBtn(); closeMap();
+  if(document.getElementById("f-name")) persistForm();
+}
+function syncLocBtn(){
+  const b = document.getElementById("loc-btn");
+  if(b){ b.textContent = window._loc ? t("loc_set") : t("pick_map"); b.classList.toggle("set", !!window._loc); }
+}
+function closeMap(){ document.getElementById("map-modal").classList.remove("open"); }
+
+/* ================= DRAWER / FAQ / TOAST ================= */
+function openCart(){ document.getElementById("drawer").classList.add("open"); document.getElementById("drawer-bg").classList.add("open"); renderCart(); }
+function closeCart(){ document.getElementById("drawer").classList.remove("open"); document.getElementById("drawer-bg").classList.remove("open"); checkoutMode=false; }
+function renderFaq(){
+  document.getElementById("faq-list").innerHTML = I18N[lang].faqs.map(([q,a])=>
+    `<details><summary>${q}</summary><p>${a}</p></details>`).join("");
+}
+let toastTimer;
+function toast(msg){
+  const el = document.getElementById("toast");
+  el.textContent = msg; el.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>el.classList.remove("show"), 2600);
+}
+
+/* ================= HELP / SITE CONFIG ================= */
+let _cfg = {};
+fetch("/api/auth").then(r=>r.json()).then(j=>{ if(j && j.ok) _cfg = j; }).catch(()=>{});
+function openHelp(){
+  const bot = _cfg.bot;
+  window.open(bot ? `https://t.me/${bot}?start=help` : `https://t.me/${CONFIG.tgHandle}`, "_blank");
+}
+
+/* ================= CATALOG LOADER ================= */
+async function loadCatalog(){
+  let data = null;
+  try{
+    const r = await fetch("/api/catalog");
+    const j = await r.json();
+    if(j.ok && j.signature && j.flavours) data = j;
+  }catch(e){}
+  if(!data){
+    try{ data = await fetch("catalog.json", {cache:"no-store"}).then(r=>r.json()); }catch(e){}
+  }
+  if(data){
+    SIGNATURE = (data.signature||[]).filter(x=>x.visible!==false);
+    FLAVOURS = (data.flavours||[]).filter(x=>x.visible!==false);
+  }
+  if(!find(FLAVOURS, sel.flavour)){
+    const f = FLAVOURS.find(x=>x.g==="tea") || FLAVOURS[0];
+    sel.flavour = f ? f.id : null;
+  }
+  renderTabs(); renderFlavours(); renderSteps(); renderSummary();
+}
+
+/* ================= INIT ================= */
+document.getElementById("foot-tg").href = `https://t.me/${CONFIG.tgHandle}`;
+renderScoops(); applyI18n(); renderFaq(); updateCount(); updateAccBtn(); loadCatalog();
 </script>
 </body>
 </html>
