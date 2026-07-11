@@ -152,6 +152,16 @@ section{padding:72px 0}
 .how-card h3{font-size:1.05rem;margin:6px 0}
 .how-card p{font-size:.87rem;color:var(--ink2)}
 
+/* events */
+.events{background:var(--cream2)}
+.events .ev-ic{font-size:1.7rem;display:block;margin-bottom:12px}
+.ev-banner{margin-top:34px;background:var(--green);color:#f2eee2;border-radius:var(--r);padding:34px 38px;display:flex;align-items:center;justify-content:space-between;gap:26px;box-shadow:var(--shadow)}
+.ev-banner h3{color:#fff;font-size:1.45rem;margin-bottom:8px}
+.ev-banner p{font-size:.92rem;color:#cfdccb;max-width:560px}
+.ev-banner .btn{background:var(--cream);color:var(--ink);border-color:transparent;white-space:nowrap}
+.ev-banner .btn:hover{background:#fff}
+@media(max-width:760px){.ev-banner{flex-direction:column;align-items:flex-start}}
+
 /* faq */
 .faq-list{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
 details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 20px}
@@ -273,6 +283,7 @@ footer .f-logo{font-family:'Playfair Display',serif;font-size:1.3rem;letter-spac
         <a href="#flavours" data-i18n="nav_flavours">Flavours</a>
         <a href="#custom" data-i18n="nav_custom">Create your own</a>
         <a href="#how" data-i18n="nav_how">How it works</a>
+        <a href="#events" data-i18n="nav_events">Events</a>
         <a href="#faq" data-i18n="nav_faq">FAQ</a>
       </div>
       <div class="lang-toggle">
@@ -352,6 +363,41 @@ footer .f-logo{font-family:'Playfair Display',serif;font-size:1.3rem;letter-spac
       <div class="how-card"><div class="n">2</div><h3 data-i18n="h2_t">I churn it</h3><p data-i18n="h2_p">Made fresh in small batches, usually within 24–48 hours. Tea is brewed gong-fu strength, never from powders or syrups.</p></div>
       <div class="how-card"><div class="n">3</div><h3 data-i18n="h3_t">I deliver</h3><p data-i18n="h3_p">Personally, frozen, in 1 / 2 / 5 kg packs. We agree a time slot that suits you.</p></div>
       <div class="how-card"><div class="n">4</div><h3 data-i18n="h4_t">You pay</h3><p data-i18n="h4_p">On delivery: cash, card, Revolut or crypto. If something's wrong with the order — you don't pay.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section id="events" class="events">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow" data-i18n="ev_eyebrow">Events &amp; occasions</span>
+      <h2 data-i18n="ev_h2">Ice cream your guests will remember</h2>
+      <p data-i18n="ev_sub">From a dinner for eight to a wedding for two hundred. Small batch means your ice cream is churned for your date — never thawed for it.</p>
+    </div>
+    <div class="grid">
+      <div class="card"><span class="ev-ic">🍽️</span><h3 data-i18n="ev1_t">Dinner parties</h3>
+        <p class="desc" data-i18n="ev1_p">A tasting flight for your table: three contrasting flavours with a card of pairing notes. End the evening with aged puerh instead of another tiramisu.</p>
+        <div class="meta"><span data-i18n="ev1_m">3 × 1 kg · 8–14 guests</span></div>
+        <div class="foot"><span class="price" data-i18n="ev1_pr">from €105</span><button class="add-btn" onclick="openHelp()" data-i18n="ev_btn">Discuss</button></div>
+      </div>
+      <div class="card"><span class="ev-ic">🏢</span><h3 data-i18n="ev2_t">Offices &amp; teams</h3>
+        <p class="desc" data-i18n="ev2_p">An ice cream day nobody skips. Frozen packs delivered to the office at −18 °C; cups, spoons and a flavour card included if you need them.</p>
+        <div class="meta"><span data-i18n="ev2_m">5 kg · ~50 scoops</span></div>
+        <div class="foot"><span class="price" data-i18n="ev2_pr">from €154</span><button class="add-btn" onclick="openHelp()" data-i18n="ev_btn">Discuss</button></div>
+      </div>
+      <div class="card"><span class="ev-ic">💍</span><h3 data-i18n="ev3_t">Weddings &amp; celebrations</h3>
+        <p class="desc" data-i18n="ev3_p">A flavour created and named for your day. We taste together, tune the recipe — and it never appears on the public menu unless you want it to.</p>
+        <div class="meta"><span data-i18n="ev3_m">custom flavour · any volume</span></div>
+        <div class="foot"><span class="price" data-i18n="ev3_pr">price on request</span><button class="add-btn" onclick="openHelp()" data-i18n="ev_btn">Discuss</button></div>
+      </div>
+    </div>
+    <div class="ev-banner">
+      <div>
+        <h3 data-i18n="ev_ban_t">A flavour that exists only for your event</h3>
+        <p data-i18n="ev_ban_p">Tell me the occasion and the mood — I'll design, test and name a tea flavour for it. Bring a tea you love, and I'll turn it into dessert. No factory can do that.</p>
+      </div>
+      <button class="btn" onclick="openHelp()" data-i18n="ev_cta">Plan my event in Telegram</button>
     </div>
   </div>
 </section>
@@ -499,6 +545,19 @@ en:{
   h2_t:"I churn it", h2_p:"Made fresh in small batches, usually within 24–48 hours. Tea is brewed gong-fu strength — never powders or syrups.",
   h3_t:"I deliver", h3_p:"Personally, frozen, in 1 / 2 / 5 kg packs. We agree a time slot that suits you.",
   h4_t:"You pay", h4_p:"On delivery: cash, card, Revolut or crypto. If something's wrong with the order — you don't pay.",
+  nav_events:"Events",
+  ev_eyebrow:"Events & occasions", ev_h2:"Ice cream your guests will remember",
+  ev_sub:"From a dinner for eight to a wedding for two hundred. Small batch means your ice cream is churned for your date — never thawed for it.",
+  ev1_t:"Dinner parties", ev1_p:"A tasting flight for your table: three contrasting flavours with a card of pairing notes. End the evening with aged puerh instead of another tiramisu.",
+  ev1_m:"3 × 1 kg · 8–14 guests", ev1_pr:"from €105",
+  ev2_t:"Offices & teams", ev2_p:"An ice cream day nobody skips. Frozen packs delivered to the office at −18 °C; cups, spoons and a flavour card included if you need them.",
+  ev2_m:"5 kg · ~50 scoops", ev2_pr:"from €154",
+  ev3_t:"Weddings & celebrations", ev3_p:"A flavour created and named for your day. We taste together, tune the recipe — and it never appears on the public menu unless you want it to.",
+  ev3_m:"custom flavour · any volume", ev3_pr:"price on request",
+  ev_btn:"Discuss",
+  ev_ban_t:"A flavour that exists only for your event",
+  ev_ban_p:"Tell me the occasion and the mood — I'll design, test and name a tea flavour for it. Bring a tea you love, and I'll turn it into dessert. No factory can do that.",
+  ev_cta:"Plan my event in Telegram",
   faq_h2:"Good questions",
   cart_h:"Your order", cart_empty:"Your cart is empty. Go build something delicious.",
   custom_name:"Custom ice cream", total:"Total", checkout:"Checkout",
@@ -574,6 +633,19 @@ ru:{
   h2_t:"Я готовлю", h2_p:"Свежая партия под ваш заказ, обычно за 24–48 часов. Чай завариваю по-гунфу — никаких порошков и сиропов.",
   h3_t:"Я привожу", h3_p:"Лично, в заморозке, упаковки 1 / 2 / 5 кг. Договоримся об удобном времени.",
   h4_t:"Вы платите", h4_p:"При получении: наличные, карта, Revolut или крипта. Если с заказом что-то не так — вы не платите.",
+  nav_events:"События",
+  ev_eyebrow:"События и поводы", ev_h2:"Мороженое, которое запомнят гости",
+  ev_sub:"От ужина на восьмерых до свадьбы на двести человек. Малые партии значат, что ваше мороженое взбивается к вашей дате — а не размораживается к ней.",
+  ev1_t:"Званый ужин", ev1_p:"Дегустационный сет для вашего стола: три контрастных вкуса и карточка с нотами. Завершите вечер выдержанным пуэром вместо очередного тирамису.",
+  ev1_m:"3 × 1 кг · 8–14 гостей", ev1_pr:"от €105",
+  ev2_t:"Офисы и команды", ev2_p:"День мороженого, который никто не пропустит. Привожу в офис в заморозке при −18 °C; стаканчики, ложки и карту вкусов добавлю, если нужно.",
+  ev2_m:"5 кг · ~50 шариков", ev2_pr:"от €154",
+  ev3_t:"Свадьбы и праздники", ev3_p:"Вкус, созданный и названный в честь вашего дня. Дегустируем вместе, настраиваем рецепт — и он не появится в общем меню, если вы не захотите.",
+  ev3_m:"свой вкус · любой объём", ev3_pr:"цена по запросу",
+  ev_btn:"Обсудить",
+  ev_ban_t:"Вкус, который существует только для вашего события",
+  ev_ban_p:"Расскажите про повод и настроение — я придумаю, отработаю и назову чайный вкус специально для него. Принесите любимый чай — превращу его в десерт. Ни одна фабрика так не умеет.",
+  ev_cta:"Обсудить событие в Telegram",
   faq_h2:"Хорошие вопросы",
   cart_h:"Ваш заказ", cart_empty:"Корзина пуста. Идите соберите что-нибудь вкусное.",
   custom_name:"Кастомное мороженое", total:"Итого", checkout:"Оформить",
