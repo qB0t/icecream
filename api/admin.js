@@ -2,19 +2,7 @@
 // Auth: x-admin-key header must equal ADMIN_KEY env var.
 // GET  /api/admin            -> { ok, orders: [...] } (newest first, last 100)
 // POST /api/admin {id,status}-> { ok, notified }
-const KV_URL = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
-const KV_TOKEN = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
-async function kv(cmd) {
-  if (!KV_URL || !KV_TOKEN) return null;
-  const r = await fetch(KV_URL, {
-    method: "POST",
-    headers: { Authorization: `Bearer ${KV_TOKEN}`, "Content-Type": "application/json" },
-    body: JSON.stringify(cmd),
-  });
-  const j = await r.json();
-  if (j.error) throw new Error(j.error);
-  return j.result;
-}
+import { kv, hasKV, ORDER_RE, tgSend } from "./_lib.js";
 
 const STATUSES = ["new", "accepted", "churning", "delivery", "done", "cancelled"];
 const CUSTOMER_MSG = {
@@ -31,7 +19,7 @@ export default async function handler(req, res) {
     res.status(401).json({ ok: false, error: "unauthorized" });
     return;
   }
-  if (!KV_URL || !KV_TOKEN) {
+  if (!hasKV()) {
     res.status(500).json({ ok: false, error: "kv_not_configured" });
     return;
   }
@@ -48,7 +36,7 @@ export default async function handler(req, res) {
     }
     if (req.method === "POST") {
       const { id, status } = req.body || {};
-      if (typeof id !== "string" || !/^TICE-[A-Z0-9]{4,12}$/.test(id) || !STATUSES.includes(status)) {
+      if (typeof id !== "string" || !ORDER_RE.test(id) || !STATUSES.includes(status)) {
         res.status(400).json({ ok: false, error: "bad_request" });
         return;
       }
@@ -62,12 +50,8 @@ export default async function handler(req, res) {
       const token = process.env.TELEGRAM_BOT_TOKEN;
       if (order.chatId && token && CUSTOMER_MSG[status]) {
         try {
-          const r = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ chat_id: order.chatId, text: CUSTOMER_MSG[status].replaceAll("%ID%", id) }),
-          });
-          notified = (await r.json()).ok === true;
+          const j = await tgSend(token, order.chatId, CUSTOMER_MSG[status].replaceAll("%ID%", id));
+          notified = j.ok === true;
         } catch (e) { /* notification is best-effort */ }
       }
       res.status(200).json({ ok: true, notified });

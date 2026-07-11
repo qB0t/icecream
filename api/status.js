@@ -1,22 +1,10 @@
 // Public order status lookup: GET /api/status?id=TICE-XXXXX
-const KV_URL = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
-const KV_TOKEN = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
-async function kv(cmd) {
-  if (!KV_URL || !KV_TOKEN) return null;
-  const r = await fetch(KV_URL, {
-    method: "POST",
-    headers: { Authorization: `Bearer ${KV_TOKEN}`, "Content-Type": "application/json" },
-    body: JSON.stringify(cmd),
-  });
-  const j = await r.json();
-  if (j.error) throw new Error(j.error);
-  return j.result;
-}
+import { kv, ORDER_RE } from "./_lib.js";
 
 export default async function handler(req, res) {
   if (req.method !== "GET") { res.status(405).json({ ok: false }); return; }
   const id = req.query && req.query.id;
-  if (typeof id !== "string" || !/^TICE-[A-Z0-9]{4,12}$/.test(id)) {
+  if (typeof id !== "string" || !ORDER_RE.test(id)) {
     res.status(400).json({ ok: false, error: "bad_id" });
     return;
   }

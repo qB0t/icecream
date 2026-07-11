@@ -3,19 +3,7 @@
 //   https://api.telegram.org/bot<TOKEN>/setWebhook?url=https://puerhbar.com/api/telegram&secret_token=<YOUR_SECRET>
 // Env vars: TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID (your admin chat),
 //           TELEGRAM_WEBHOOK_SECRET (same value as secret_token above)
-const KV_URL = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
-const KV_TOKEN = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
-async function kv(cmd) {
-  if (!KV_URL || !KV_TOKEN) return null;
-  const r = await fetch(KV_URL, {
-    method: "POST",
-    headers: { Authorization: `Bearer ${KV_TOKEN}`, "Content-Type": "application/json" },
-    body: JSON.stringify(cmd),
-  });
-  const j = await r.json();
-  if (j.error) throw new Error(j.error);
-  return j.result;
-}
+import { kv, ORDER_RE, tgSend } from "./_lib.js";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") { res.status(405).end(); return; }
@@ -26,12 +14,7 @@ export default async function handler(req, res) {
   if (secret && req.headers["x-telegram-bot-api-secret-token"] !== secret) {
     res.status(401).end(); return;
   }
-  const send = (chat_id, text) =>
-    fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ chat_id, text }),
-    });
+  const send = (chat_id, text) => tgSend(token, chat_id, text);
 
   const msg = req.body && req.body.message;
   if (!msg || !msg.text) { res.status(200).json({ ok: true }); return; }
@@ -51,7 +34,7 @@ export default async function handler(req, res) {
     } else if (text.startsWith("/start")) {
       const orderId = text.split(" ")[1];
       // link this chat to the order so status updates reach the customer
-      if (orderId && /^TICE-[A-Z0-9]{4,12}$/.test(orderId)) {
+      if (orderId && ORDER_RE.test(orderId)) {
         try {
           const raw = await kv(["GET", "order:" + orderId]);
           if (raw) {

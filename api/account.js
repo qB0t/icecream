@@ -2,39 +2,12 @@
 // Auth: Authorization: Bearer <token from /api/auth>
 // GET  /api/account            -> { ok, orders: [{id,status,ts,total,items}] } newest first
 // POST /api/account {claim:id} -> { ok } attaches an unowned order to this account
-import crypto from "node:crypto";
-const KV_URL = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
-const KV_TOKEN = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
-async function kv(cmd) {
-  if (!KV_URL || !KV_TOKEN) return null;
-  const r = await fetch(KV_URL, {
-    method: "POST",
-    headers: { Authorization: `Bearer ${KV_TOKEN}`, "Content-Type": "application/json" },
-    body: JSON.stringify(cmd),
-  });
-  const j = await r.json();
-  if (j.error) throw new Error(j.error);
-  return j.result;
-}
-function verifyToken(hdr) {
-  const SECRET = process.env.AUTH_SECRET;
-  if (!SECRET || !hdr || !hdr.startsWith("Bearer ")) return null;
-  const parts = hdr.slice(7).split(".");
-  if (parts.length !== 2) return null;
-  const sig = crypto.createHmac("sha256", SECRET).update(parts[0]).digest("base64url");
-  const a = Buffer.from(sig), b = Buffer.from(parts[1]);
-  if (a.length !== b.length || !crypto.timingSafeEqual(a, b)) return null;
-  try {
-    const o = JSON.parse(Buffer.from(parts[0], "base64url").toString());
-    if (!o.e || o.x < Date.now()) return null;
-    return o.e;
-  } catch (e) { return null; }
-}
+import { kv, hasKV, verifyToken, ORDER_RE } from "./_lib.js";
 
 export default async function handler(req, res) {
   const email = verifyToken(req.headers["authorization"]);
   if (!email) { res.status(401).json({ ok: false, error: "unauthorized" }); return; }
-  if (!KV_URL || !KV_TOKEN) { res.status(500).json({ ok: false, error: "kv_not_configured" }); return; }
+  if (!hasKV()) { res.status(500).json({ ok: false, error: "kv_not_configured" }); return; }
   try {
     if (req.method === "GET") {
       const ids = (await kv(["ZRANGE", "uorders:" + email, "-50", "-1"])) || [];
@@ -51,7 +24,7 @@ export default async function handler(req, res) {
     }
     if (req.method === "POST") {
       const id = req.body && req.body.claim;
-      if (typeof id !== "string" || !/^TICE-[A-Z0-9]{4,12}$/.test(id)) {
+      if (typeof id !== "string" || !ORDER_RE.test(id)) {
         res.status(400).json({ ok: false, error: "bad_request" });
         return;
       }
