@@ -75,6 +75,7 @@ pre{white-space:pre-wrap;font-size:.82rem;background:var(--cream);border-radius:
 <div id="menu" hidden>
   <div class="row" style="position:sticky;top:0;background:var(--cream);padding:8px 0;z-index:5">
     <button onclick="saveMenu()">💾 Save &amp; publish</button>
+    <button class="ghost" onclick="loadDefaults()">⬇ Load defaults from catalog.json</button>
     <span class="note" id="m-note"></span>
   </div>
   <h2 style="font-size:1.15rem;margin:10px 0">Signature cards <button class="ghost" style="font-size:.78rem;padding:4px 12px" onclick="addRow('signature')">+ add</button></h2>
@@ -245,7 +246,7 @@ function renderEditor(){
         ? area(kind,i,"dEn","description (EN)")+area(kind,i,"dRu","description (RU)")+area(kind,i,"ingEn","contents (EN)")+area(kind,i,"ingRu","contents (RU)")
         : area(kind,i,"descEn","short description (EN)")+area(kind,i,"descRu","short description (RU)")}
       <div class="m-actions">
-        ${cb(kind,i,"adult","18+")} ${cb(kind,i,"ltd","limited")}
+        ${cb(kind,i,"adult","18+")} ${cb(kind,i,"ltd","limited")} ${kind==="signature"?cb(kind,i,"featured","featured (top of site)"):""}
         <span style="flex:1"></span>
         ${i>0?`<button class="ghost" onclick="moveUp('${kind}',${i})">↑ move up</button>`:""}
         <button class="ghost" style="color:var(--danger)" onclick="delRow('${kind}',${i})">✕ delete</button>
@@ -271,6 +272,16 @@ function moveUp(kind,i){
   [M[kind][i-1], M[kind][i]] = [M[kind][i], M[kind][i-1]];
   msel = {kind, idx:i-1};
   renderSelectors(); renderEditor();
+}
+async function loadDefaults(){
+  if(!confirm("Replace the current editor contents with catalog.json from the site? Nothing is published until you hit Save & publish.")) return;
+  try{
+    const d = await fetch("catalog.json", {cache:"no-store"}).then(r=>r.json());
+    M = {signature:d.signature, flavours:d.flavours};
+    msel = {kind:null, idx:null};
+    renderSelectors(); renderEditor();
+    note("Defaults loaded — review, then Save & publish to make them live.");
+  }catch(e){ note("Could not load catalog.json"); }
 }
 async function saveMenu(){
   note("saving…");

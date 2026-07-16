@@ -85,8 +85,10 @@ section{padding:96px 0}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){.grid{grid-template-columns:1fr}}
-.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform .18s ease,box-shadow .18s ease}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform .18s ease,box-shadow .18s ease,opacity .18s ease,filter .18s ease}
 .card:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(43,33,24,.11)}
+.card.dim{opacity:.55;filter:saturate(.75)}
+.card.dim:hover{opacity:1;filter:none}
 .card .swatch{width:64px;height:64px;border-radius:50%;margin-bottom:14px;box-shadow:inset -6px -8px 14px rgba(0,0,0,.18), inset 5px 6px 10px rgba(255,255,255,.35)}
 .card h3{font-size:1.2rem;margin-bottom:4px}
 .card .tag{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:8px}
@@ -763,10 +765,11 @@ function renderTabs(){
     `<button class="${flavTab===id?'on':''}" onclick="flavTab='${id}';renderTabs();renderFlavours()">${t(k)}</button>`).join("");
 }
 function renderFlavours(){
-  const list = SIGNATURE.filter(s=>flavTab==="all"||s.tab===flavTab);
+  const list = SIGNATURE.filter(s=>flavTab==="all"||s.tab===flavTab)
+    .slice().sort((a,b)=>(b.featured?1:0)-(a.featured?1:0)); // featured first, keep stored order otherwise
   document.getElementById("flav-grid").innerHTML = list.map(s=>{
     const tabName = t("tab_"+s.tab).replace(" 18+","");
-    return `<div class="card">
+    return `<div class="card${s.featured?'':' dim'}">
       <div class="swatch" style="background:radial-gradient(circle at 32% 28%, ${s.color}, ${shade(s.color,-22)})"></div>
       <div class="tag">${tabName}</div>
       <h3>${L({en:s.en,ru:s.ru})}${s.adult?'<span class="badge18">18+</span>':''}${s.ltd?'<span class="badge-ltd">LIMITED</span>':''}</h3>
