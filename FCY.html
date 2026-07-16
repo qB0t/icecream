@@ -8,58 +8,51 @@
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --cream:#faf6ee; --cream2:#f2ead9; --ink:#2b2118; --ink2:#6b5a48;
   --green:#35563b; --green2:#4a7354; --amber:#a2643a; --amber2:#c98d5f;
   --card:#fffdf8; --line:#e5dac6; --danger:#a33b2e;
+  --fcy:#ec4152;
   --shadow:0 10px 30px rgba(43,33,24,.08); --shadow2:0 4px 14px rgba(43,33,24,.10);
   --r:18px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--ink);line-height:1.6;font-size:16px}
-h1,h2,h3,.serif{font-family:'Playfair Display',serif}
+h3,.serif{font-family:'Playfair Display',serif}
 .wrap{max-width:560px;margin:0 auto;padding:0 20px}
 
 header{padding:28px 0 0;text-align:center}
 .logo{font-family:'Playfair Display',serif;font-weight:700;font-size:1.7rem;letter-spacing:.12em;color:var(--ink);text-decoration:none;display:inline-block}
 .logo em{display:block;font-family:'Inter',sans-serif;font-style:normal;font-size:.58rem;letter-spacing:.28em;color:var(--ink2);font-weight:500;margin-top:-2px}
 
-.hero{padding:34px 0 10px;text-align:center}
-.eyebrow{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--amber);margin-bottom:14px}
-.hero h1{font-size:clamp(1.9rem,7vw,2.6rem);line-height:1.16;letter-spacing:-.01em;text-wrap:balance;margin-bottom:12px}
-.hero h1 em{font-style:italic;color:var(--green)}
+.hero{padding:34px 0 14px;text-align:center}
+.pill{display:inline-block;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.06em;color:var(--fcy);background:rgba(236,65,82,.09);border:1px solid rgba(236,65,82,.25);border-radius:99px;padding:7px 18px;margin-bottom:18px}
+.hero h1{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(1.9rem,7.4vw,2.7rem);line-height:1.12;letter-spacing:-.02em;text-wrap:balance;margin-bottom:14px}
+.hero h1 em{font-style:normal;color:var(--fcy)}
 .hero p{color:var(--ink2);max-width:420px;margin:0 auto;text-wrap:balance}
 .candles{font-size:1.9rem;letter-spacing:.1em;margin-bottom:14px}
 
-.times{margin:26px 0 6px;background:var(--green);color:#f2eee2;border-radius:var(--r);padding:20px 24px;text-align:center;box-shadow:var(--shadow)}
-.times h2{color:#fff;font-size:1.15rem;margin-bottom:4px}
-.times .slots{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:10px 0 6px}
-.times .slot{background:rgba(250,246,238,.14);border:1px solid rgba(250,246,238,.3);border-radius:99px;padding:6px 18px;font-weight:600;font-size:1rem}
-.times p{font-size:.85rem;color:#cfdccb}
-
-.menu{padding:30px 0 10px;display:flex;flex-direction:column;gap:16px}
+.menu{padding:26px 0 10px;display:flex;flex-direction:column;gap:16px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;box-shadow:var(--shadow2);display:flex;gap:16px;align-items:flex-start}
 .swatch{flex:0 0 54px;width:54px;height:54px;border-radius:50%;box-shadow:inset -6px -8px 14px rgba(0,0,0,.18), inset 5px 6px 10px rgba(255,255,255,.35);margin-top:3px}
-.card h3{font-size:1.12rem;line-height:1.3}
-.tag{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);display:inline-block;margin-bottom:2px}
-.card p.desc{font-size:.87rem;color:var(--ink2);margin:4px 0 8px}
-.tea{font-size:.8rem;color:var(--green);font-style:italic;border-top:1px dashed var(--line);padding-top:8px;margin-bottom:8px}
-.ing{font-size:.78rem;color:var(--ink2)}
+.card h3{font-size:1.18rem;line-height:1.3;margin-bottom:4px}
+.card p.desc{font-size:.87rem;color:var(--ink2);margin:0 0 10px}
+.ing{font-size:.78rem;color:var(--ink2);border-top:1px dashed var(--line);padding-top:8px}
 .ing b{color:var(--ink);font-weight:600}
-.card .desc + .ing{border-top:1px dashed var(--line);padding-top:8px}
 .badges{margin-top:8px;display:flex;gap:6px;flex-wrap:wrap}
-.badge{display:inline-block;font-size:.68rem;font-weight:700;border-radius:6px;padding:2px 8px;letter-spacing:.04em}
-.badge.abv{border:1.5px solid var(--danger);color:var(--danger)}
+.badge{display:inline-block;font-family:'Space Grotesk',sans-serif;font-size:.68rem;font-weight:700;border-radius:6px;padding:2px 8px;letter-spacing:.04em}
+.badge.abv{border:1.5px solid var(--fcy);color:var(--fcy)}
 .badge.vegan{background:#eaf0e6;color:var(--green);border:1.5px solid var(--green2)}
 .badge.kids{background:var(--cream2);color:var(--ink2);border:1.5px solid var(--line)}
 
 .note{margin:20px 0;text-align:center;font-size:.85rem;color:var(--ink2)}
-.note b{color:var(--danger)}
+.note b{color:var(--fcy)}
+.note a{color:var(--green);font-weight:600}
 
 .cta{margin:8px 0 0;background:var(--cream2);border:1px solid var(--line);border-radius:var(--r);padding:24px;text-align:center}
-.cta h2{font-size:1.25rem;margin-bottom:6px}
+.cta h2{font-family:'Space Grotesk',sans-serif;font-size:1.25rem;margin-bottom:6px}
 .cta p{font-size:.88rem;color:var(--ink2);margin-bottom:16px}
 .btn{display:inline-block;border-radius:99px;padding:13px 28px;font-weight:600;font-size:.95rem;text-decoration:none;background:var(--green);color:#fff;transition:.18s}
 .btn:hover{background:var(--green2)}
@@ -77,19 +70,11 @@ footer a{color:var(--green);font-weight:600;text-decoration:none}
 <section class="hero">
   <div class="wrap">
     <div class="candles">🎂</div>
-    <span class="eyebrow">Founder CY · 4th birthday</span>
-    <h1>Four years.<br>Seven flavours. <em>Zero preservatives.</em></h1>
-    <p>Small-batch tea ice cream, churned in litre batches this week — just for today.</p>
+    <div class="pill">FOUNDER CY · 4TH BIRTHDAY</div>
+    <h1>Four years. Six flavours.<br><em>Zero preservatives.</em></h1>
+    <p>Small-batch tea ice cream, churned in litre batches this week — just for today. When a batch is gone, it's gone.</p>
   </div>
 </section>
-
-<div class="wrap">
-  <div class="times">
-    <h2>Today's batches</h2>
-    <div class="slots"><span class="slot">№ 006 – 007</span><span class="slot">№ 009 – 013</span></div>
-    <p>A couple of litres each · when a batch is gone, it's gone</p>
-  </div>
-</div>
 
 <div class="wrap">
   <div class="menu">
@@ -97,43 +82,36 @@ footer a{color:var(--green);font-weight:600;text-decoration:none}
     <div class="card">
       <div class="swatch" style="background:#6b4226"></div>
       <div>
-        <span class="tag">Batch 013 · Tea · our signature</span>
         <h3>Shu Puerh — Lao Cha Tou</h3>
-        <p class="desc">Aged "tea heads" boiled right into the milk. Coffee, dark chocolate, forest floor.</p>
-        <div class="tea">🍃 Lao Cha Tou 2018 — naturally clumped nuggets of old-tree ripe puerh; coffee-chocolate, smooth and sweet, excellent boiled.</div>
-        <div class="ing"><b>Inside:</b> oat milk, cream, white sugar, corn starch, Lao Cha Tou shu puerh</div>
+        <p class="desc">Aged "tea heads" of 2018 — naturally clumped nuggets of old-tree ripe puerh. Coffee, dark chocolate, forest floor; deep, smooth and sweet. Our signature.</p>
+        <div class="ing"><b>Inside:</b> Lao Cha Tou shu puerh, oat milk, cream, white sugar, organic corn starch</div>
       </div>
     </div>
 
     <div class="card">
       <div class="swatch" style="background:#5c3a22"></div>
       <div>
-        <span class="tag">Batch 012 · Tea</span>
         <h3>Lao Ban Zhang</h3>
-        <p class="desc">Puerh from the most famous tea village in Yunnan — you don't often see LBZ in a teacup, let alone a scoop.</p>
-        <div class="tea">🍃 Lao Ban Zhang 2014 — premium aged Bulang ripe; creamy, dark chocolate and spicy wood, long sweet aftertaste.</div>
-        <div class="ing"><b>Inside:</b> oat milk, cream, white sugar, corn starch, Lao Ban Zhang puerh</div>
+        <p class="desc">Premium aged ripe puerh of 2014 from the most famous tea village in Yunnan. Creamy, dark chocolate and spicy wood with a long sweet aftertaste — you rarely meet LBZ in a teacup, let alone a scoop.</p>
+        <div class="ing"><b>Inside:</b> Lao Ban Zhang puerh, oat milk, cream, white sugar, organic corn starch</div>
       </div>
     </div>
 
     <div class="card">
       <div class="swatch" style="background:#8fa065"></div>
       <div>
-        <span class="tag">Batch 011 · Tea</span>
         <h3>Yerba Mate</h3>
-        <p class="desc">Green mate steeped in the base — the espresso of teas, frozen.</p>
-        <div class="tea">🍃 Artisanal Brazilian green mate — grassy, vibrant and gently energizing.</div>
-        <div class="ing"><b>Inside:</b> oat milk, cream, white sugar, corn starch, yerba mate</div>
+        <p class="desc">Artisanal Brazilian green mate — grassy, vibrant and gently energizing. The espresso of teas, frozen.</p>
+        <div class="ing"><b>Inside:</b> yerba mate, oat milk, cream, white sugar, organic corn starch</div>
       </div>
     </div>
 
     <div class="card">
       <div class="swatch" style="background:#7a4a33"></div>
       <div>
-        <span class="tag">Batch 010 · With wine · 18+</span>
         <h3>Commandaria &amp; Carob</h3>
-        <p class="desc">Cyprus in a scoop: the world's oldest named dessert wine meets local carob.</p>
-        <div class="ing"><b>Inside:</b> oat milk, cream, coconut sugar, corn starch, Commandaria wine, carob</div>
+        <p class="desc">Cyprus in a scoop — Commandaria, the world's oldest named dessert wine, meets local carob. Warm, raisiny, quietly boozy.</p>
+        <div class="ing"><b>Inside:</b> Commandaria wine, carob, oat milk, cream, coconut sugar, organic corn starch</div>
         <div class="badges"><span class="badge abv">≈1.3% ABV · 18+</span></div>
       </div>
     </div>
@@ -141,40 +119,25 @@ footer a{color:var(--green);font-weight:600;text-decoration:none}
     <div class="card">
       <div class="swatch" style="background:#7a9b4e"></div>
       <div>
-        <span class="tag">Batch 009 · Tea</span>
         <h3>Matcha</h3>
-        <p class="desc">Ceremonial Japanese matcha, whisked and folded into the base. Vivid green, gently bitter, quietly invigorating.</p>
-        <div class="tea">🍃 Matcha Ceremony — ceremonial-grade powdered green tea; vivid green, sweet aroma, rich taste with soft bitterness.</div>
-        <div class="ing"><b>Inside:</b> oat milk, cream, white sugar, corn starch, matcha</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="swatch" style="background:#e8b95a"></div>
-      <div>
-        <span class="tag">Batch 007 · Tea × fruit</span>
-        <h3>Mango × Tai Ping Hou Kui</h3>
-        <p class="desc">Ripe mango with a whisper of one of China's great green teas behind the fruit.</p>
-        <div class="tea">🍃 Tai Ping Hou Kui 2026 — "Monkey King" Anhui green of long pressed leaves; honeyed orchid aroma, no astringency.</div>
-        <div class="ing"><b>Inside:</b> coconut milk, white sugar, mango, Tai Ping Hou Kui green tea</div>
-        <div class="badges"><span class="badge vegan">VEGAN</span></div>
+        <p class="desc">Ceremonial-grade Japanese matcha — vivid green, sweet aroma, rich body with a soft noble bitterness. Quietly invigorating.</p>
+        <div class="ing"><b>Inside:</b> matcha, oat milk, cream, white sugar, organic corn starch</div>
       </div>
     </div>
 
     <div class="card">
       <div class="swatch" style="background:#f2b544"></div>
       <div>
-        <span class="tag">Batch 006 · Fruit</span>
         <h3>Mango</h3>
-        <p class="desc">Just ripe mango blended into barista coconut milk — all fruit, barely sweet, very creamy.</p>
-        <div class="ing"><b>Inside:</b> coconut milk, white sugar, mango</div>
+        <p class="desc">Ripe mango blended into barista coconut — all fruit, barely sweet, very creamy.</p>
+        <div class="ing"><b>Inside:</b> mango, coconut milk, white sugar</div>
         <div class="badges"><span class="badge vegan">VEGAN</span><span class="badge kids">KID-FRIENDLY</span></div>
       </div>
     </div>
 
   </div>
 
-  <p class="note">All teas come from the <a href="https://puerhbar.com" target="_blank" rel="noopener" style="color:var(--green);font-weight:600">Puerh Bar</a> gong-fu collection · Full ingredient lists shown — exact proportions are the chef's secret 🤫 · <b>18+ flavours: bring your grown-up face</b></p>
+  <p class="note">All teas come from the <a href="https://puerhbar.com" target="_blank" rel="noopener">Puerh Bar</a> gong-fu collection · Full ingredient lists shown — exact proportions are the chef's secret 🤫 · <b>18+ flavour: bring your grown-up face</b></p>
 
   <div class="cta">
     <h2>Want a kilo of this at home?</h2>
