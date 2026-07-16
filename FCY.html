@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TICE × Founder CY — Birthday Menu</title>
+<meta name="description" content="A tiny tea ice cream menu churned for Founder CY's 4th birthday.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#faf6ee; --cream2:#f2ead9; --ink:#2b2118; --ink2:#6b5a48;
+  --green:#35563b; --green2:#4a7354; --amber:#a2643a; --amber2:#c98d5f;
+  --card:#fffdf8; --line:#e5dac6; --danger:#a33b2e;
+  --shadow:0 10px 30px rgba(43,33,24,.08); --shadow2:0 4px 14px rgba(43,33,24,.10);
+  --r:18px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--ink);line-height:1.6;font-size:16px}
+h1,h2,h3,.serif{font-family:'Playfair Display',serif}
+.wrap{max-width:560px;margin:0 auto;padding:0 20px}
+
+header{padding:28px 0 0;text-align:center}
+.logo{font-family:'Playfair Display',serif;font-weight:700;font-size:1.7rem;letter-spacing:.12em;color:var(--ink);text-decoration:none;display:inline-block}
+.logo em{display:block;font-family:'Inter',sans-serif;font-style:normal;font-size:.58rem;letter-spacing:.28em;color:var(--ink2);font-weight:500;margin-top:-2px}
+
+.hero{padding:34px 0 10px;text-align:center}
+.eyebrow{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--amber);margin-bottom:14px}
+.hero h1{font-size:clamp(1.9rem,7vw,2.6rem);line-height:1.16;letter-spacing:-.01em;text-wrap:balance;margin-bottom:12px}
+.hero h1 em{font-style:italic;color:var(--green)}
+.hero p{color:var(--ink2);max-width:420px;margin:0 auto;text-wrap:balance}
+.candles{font-size:1.9rem;letter-spacing:.1em;margin-bottom:14px}
+
+.times{margin:26px 0 6px;background:var(--green);color:#f2eee2;border-radius:var(--r);padding:20px 24px;text-align:center;box-shadow:var(--shadow)}
+.times h2{color:#fff;font-size:1.15rem;margin-bottom:4px}
+.times .slots{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:10px 0 6px}
+.times .slot{background:rgba(250,246,238,.14);border:1px solid rgba(250,246,238,.3);border-radius:99px;padding:6px 18px;font-weight:600;font-size:1rem}
+.times p{font-size:.85rem;color:#cfdccb}
+
+.menu{padding:30px 0 10px;display:flex;flex-direction:column;gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;box-shadow:var(--shadow2);display:flex;gap:16px;align-items:flex-start}
+.swatch{flex:0 0 54px;width:54px;height:54px;border-radius:50%;box-shadow:inset -6px -8px 14px rgba(0,0,0,.18), inset 5px 6px 10px rgba(255,255,255,.35);margin-top:3px}
+.card h3{font-size:1.12rem;line-height:1.3}
+.tag{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);display:inline-block;margin-bottom:2px}
+.card p.desc{font-size:.87rem;color:var(--ink2);margin:4px 0 8px}
+.ing{font-size:.78rem;color:var(--ink2);border-top:1px dashed var(--line);padding-top:8px}
+.ing b{color:var(--ink);font-weight:600}
+.badges{margin-top:8px;display:flex;gap:6px;flex-wrap:wrap}
+.badge{display:inline-block;font-size:.68rem;font-weight:700;border-radius:6px;padding:2px 8px;letter-spacing:.04em}
+.badge.abv{border:1.5px solid var(--danger);color:var(--danger)}
+.badge.vegan{background:#eaf0e6;color:var(--green);border:1.5px solid var(--green2)}
+.badge.kids{background:var(--cream2);color:var(--ink2);border:1.5px solid var(--line)}
+
+.note{margin:20px 0;text-align:center;font-size:.85rem;color:var(--ink2)}
+.note b{color:var(--danger)}
+
+.cta{margin:8px 0 0;background:var(--cream2);border:1px solid var(--line);border-radius:var(--r);padding:24px;text-align:center}
+.cta h2{font-size:1.25rem;margin-bottom:6px}
+.cta p{font-size:.88rem;color:var(--ink2);margin-bottom:16px}
+.btn{display:inline-block;border-radius:99px;padding:13px 28px;font-weight:600;font-size:.95rem;text-decoration:none;background:var(--green);color:#fff;transition:.18s}
+.btn:hover{background:var(--green2)}
+
+footer{padding:34px 0 40px;text-align:center;font-size:.82rem;color:var(--ink2)}
+footer a{color:var(--green);font-weight:600;text-decoration:none}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="/">TICE<em>TEA ICE CREAM</em></a>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="candles">🎂</div>
+    <span class="eyebrow">Founder CY · 4th birthday</span>
+    <h1>Four years.<br>Seven flavours. <em>Zero preservatives.</em></h1>
+    <p>Small-batch tea ice cream, churned this morning for today. When a batch is gone, it's gone.</p>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="times">
+    <h2>Serving today</h2>
+    <div class="slots"><span class="slot">10:00 – 13:00</span><span class="slot">18:00 – 19:00</span></div>
+    <p>A few batches only · free scoop while it lasts</p>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="menu">
+
+    <div class="card">
+      <div class="swatch" style="background:#6b4226"></div>
+      <div>
+        <span class="tag">Tea · our signature</span>
+        <h3>Shu Puerh — Lao Cha Tou</h3>
+        <p class="desc">Aged "tea heads" brewed gong-fu strength into hot milk. Coffee, dark chocolate, forest floor.</p>
+        <div class="ing"><b>Inside:</b> milk, cream, cane sugar, egg yolk, shu puerh 2018</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="swatch" style="background:#e3cf9c"></div>
+      <div>
+        <span class="tag">Tea</span>
+        <h3>Milk Oolong</h3>
+        <p class="desc">Nai Xiang oolong — natural milk-caramel and orchid notes. Tastes like it was invented for ice cream.</p>
+        <div class="ing"><b>Inside:</b> milk, cream, cane sugar, egg yolk, milk oolong</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="swatch" style="background:#d9a86c"></div>
+      <div>
+        <span class="tag">Tea · sorbet</span>
+        <h3>Dan Cong Sorbet</h3>
+        <p class="desc">Duck Shit oolong from old Phoenix Mountain bushes, no dairy at all. Honey, gardenia, a long sweet finish.</p>
+        <div class="ing"><b>Inside:</b> water, cane sugar, glucose, Dan Cong oolong, lemon</div>
+        <div class="badges"><span class="badge vegan">VEGAN</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="swatch" style="background:#c98d5f"></div>
+      <div>
+        <span class="tag">Classic</span>
+        <h3>Salted Caramel</h3>
+        <p class="desc">Caramel burnt a shade darker than safe, balanced with sea salt.</p>
+        <div class="ing"><b>Inside:</b> milk, cream, cane sugar, egg yolk, caramel, sea salt</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="swatch" style="background:#c9a87b"></div>
+      <div>
+        <span class="tag">Tea · caffeine-free</span>
+        <h3>Soba Cha</h3>
+        <p class="desc">Toasted buckwheat tea — warm, nutty, naturally caffeine-free. Kids love it.</p>
+        <div class="ing"><b>Inside:</b> milk, cream, cane sugar, egg yolk, toasted buckwheat</div>
+        <div class="badges"><span class="badge kids">KID-FRIENDLY</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="swatch" style="background:#b3742f"></div>
+      <div>
+        <span class="tag">With spirits · 18+</span>
+        <h3>Laphroaig Salted Caramel</h3>
+        <p class="desc">Peat smoke meets burnt caramel and sea salt. Adults only — and proudly so.</p>
+        <div class="ing"><b>Inside:</b> milk, cream, cane sugar, egg yolk, caramel, Laphroaig 10, sea salt</div>
+        <div class="badges"><span class="badge abv">~4% ABV · 18+</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="swatch" style="background:#7a4a22"></div>
+      <div>
+        <span class="tag">With spirits · 18+</span>
+        <h3>Dark Rum &amp; Raisin</h3>
+        <p class="desc">Raisins soaked in dark rum for a week, folded into custard. The classic, done properly.</p>
+        <div class="ing"><b>Inside:</b> milk, cream, cane sugar, egg yolk, raisins, dark rum</div>
+        <div class="badges"><span class="badge abv">~4% ABV · 18+</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <p class="note">Full ingredient lists shown — exact proportions are the chef's secret 🤫 · <b>18+ flavours: bring your grown-up face</b></p>
+
+  <div class="cta">
+    <h2>Want a kilo of this at home?</h2>
+    <p>Everything here (and more) is made to order — churned fresh, delivered personally in Limassol.</p>
+    <a class="btn" href="/">Order at icecream.cy</a>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    Made by Ivan for Founder CY's 4th 🎉 · <a href="/">icecream.cy</a><br>
+    Happy birthday, founders!
+  </div>
+</footer>
+
+</body>
+</html>
